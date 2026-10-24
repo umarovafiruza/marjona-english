@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Speakline — Gamified English Speaking &amp; Writing Studio</title>
+  <meta name="description" content="Gamified, friendly English learning studio with 60fps speaking teleprompter, stepping stone roadmap, voice recorder, and guided essay writing." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="app-shell">
+    
+    <!-- ======================================================================
+         1. TOPIC ROADMAP & DASHBOARD SCREEN (HOME)
+         ====================================================================== -->
+    <section id="screen-topics" class="screen is-visible is-active" aria-labelledby="brand-heading">
+      <div class="screen-inner">
+        
+        <!-- App Header Bar -->
+        <header class="site-header">
+          <div class="header-left">
+            <button type="button" class="icon-circle-btn" id="header-menu-btn" title="Menu" aria-label="Menu">
+              <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18">
+                <circle cx="6" cy="6" r="2.2"/>
+                <circle cx="18" cy="6" r="2.2"/>
+                <circle cx="6" cy="18" r="2.2"/>
+                <circle cx="18" cy="18" r="2.2"/>
+              </svg>
+            </button>
+          </div>
+
+          <div class="header-stats-row">
+            <div class="gamified-pill pill-streak" title="Daily Streak">
+              <span>🔥</span>
+              <span class="header-streak-val">7</span>
+            </div>
+            <div class="gamified-pill pill-gems" title="Gems">
+              <span>💎</span>
+              <span class="header-gems-val">320</span>
+            </div>
+            <button type="button" id="btn-open-recordings" class="gamified-pill pill-recordings" title="Saqlangan audio yozuvlar (Diktafon)">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="14" height="14">
+                <path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/>
+                <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
+                <line x1="12" x2="12" y1="19" y2="22"/>
+              </svg>
+              <span id="header-rec-count">0/3</span>
+            </button>
+          </div>
+
+          <div class="header-right">
+            <button type="button" class="theme-toggle-btn" title="Mavzuni almashtirish (Yorug' / To'q)" aria-label="Mavzuni almashtirish">
+              <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18">
+                <circle cx="12" cy="12" r="5"/>
+                <line x1="12" y1="1" x2="12" y2="3"/>
+                <line x1="12" y1="21" x2="12" y2="23"/>
+                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+                <line x1="1" y1="12" x2="3" y2="12"/>
+                <line x1="21" y1="12" x2="23" y2="12"/>
+                <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+                <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+              </svg>
+              <svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18">
+                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+              </svg>
+            </button>
+          </div>
+        </header>
+
+        <!-- Greeting Card & Mascot Avatar -->
+        <div class="greeting-card">
+          <div class="greeting-text-wrap">
+            <h1 id="brand-heading" class="greeting-name">Hey, Champion!</h1>
+            <p class="greeting-sub">Let's keep your streak going!</p>
+          </div>
+
+          <!-- Cute Gamified Leaf-Eared Mascot Avatar -->
+          <div class="mascot-avatar-wrap" title="Your learning buddy">
+            <div class="mascot-avatar-inner">
+              <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <!-- Mascot Hood/Head -->
+                <circle cx="50" cy="54" r="38" fill="#4ADE80"/>
+                <!-- Cute Leaf Ears -->
+                <ellipse cx="28" cy="22" rx="10" ry="16" transform="rotate(-25 28 22)" fill="#84CC16"/>
+                <ellipse cx="72" cy="22" rx="10" ry="16" transform="rotate(25 72 22)" fill="#84CC16"/>
+                <path d="M50 14 C48 6, 52 6, 50 2" stroke="#65A30D" stroke-width="3" stroke-linecap="round"/>
+                <!-- Inner Face -->
+                <ellipse cx="50" cy="58" rx="28" ry="24" fill="#FFFFFF"/>
+                <!-- Cheerful Eyes -->
+                <circle cx="41" cy="54" r="3.5" fill="#152718"/>
+                <circle cx="59" cy="54" r="3.5" fill="#152718"/>
+                <circle cx="42" cy="53" r="1.2" fill="#FFFFFF"/>
+                <circle cx="60" cy="53" r="1.2" fill="#FFFFFF"/>
+                <!-- Rosy Cheeks -->
+                <ellipse cx="34" cy="62" rx="4.5" ry="3" fill="#FDA4AF"/>
+                <ellipse cx="66" cy="62" rx="4.5" ry="3" fill="#FDA4AF"/>
+                <!-- Joyful Smile -->
+                <path d="M46 63 Q50 68 54 63" stroke="#152718" stroke-width="2.5" stroke-linecap="round"/>
+              </svg>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3 Quick Stat Cards -->
+        <div class="quick-stats-grid">
+          <div class="stat-card">
+            <div class="stat-icon-wrap is-streak">🔥</div>
+            <span class="stat-value stat-streak-val">7</span>
+            <span class="stat-label">Streak</span>
+            <span class="stat-sub">days</span>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-icon-wrap is-xp">🎯</div>
+            <span class="stat-value stat-xp-val">320</span>
+            <span class="stat-label">Total XP</span>
+            <span class="stat-sub">points</span>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-icon-wrap is-league">🏆</div>
+            <span class="stat-value">Silver</span>
+            <span class="stat-label">League</span>
+            <span class="stat-sub">Top 12%</span>
+          </div>
+        </div>
+
+        <!-- Featured "Continue Learning" Deep Forest Hero Card -->
+        <div class="featured-hero-card">
+          <p class="featured-eyebrow">Continue Learning</p>
+          <h2 class="featured-title" id="featured-topic-name">Introducing Yourself</h2>
+          <p class="featured-subtitle">Topic 01 · Speaking &amp; Teleprompter Practice</p>
+          
+          <div class="featured-progress-row">
+            <div class="progress-track-bar">
+              <div class="progress-fill-bar" id="featured-progress-fill" style="width: 20%;"></div>
+            </div>
+            <span class="progress-pill-badge" id="featured-progress-pill">20%</span>
+          </div>
+
+          <div class="featured-card-actions">
+            <button type="button" id="btn-hero-continue" class="hero-continue-btn">
+              <span>Continue Practice</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="16" height="16">
+                <polygon points="5 3 19 12 5 21 5 3" fill="currentColor"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- Mode & View Switcher Bar -->
+        <div class="mode-switcher-container">
+          <div class="mode-switcher" role="tablist" aria-label="Learning Mode">
+            <button type="button" class="mode-tab-btn is-active" data-mode="speaking" role="tab" aria-selected="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16">
+                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
+                <path d="M15.54 8.46a5 5 0 0 1 0 7.07"/>
+                <path d="M19.07 4.93a10 10 0 0 1 0 14.14"/>
+              </svg>
+              <span>Speaking</span>
+            </button>
+            <button type="button" class="mode-tab-btn" data-mode="writing" role="tab" aria-selected="false">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16">
+                <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
+                <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
+              </svg>
+              <span>Writing</span>
+            </button>
+          </div>
+
+          <button type="button" id="btn-toggle-view" class="view-toggle-btn" title="Toggle between Roadmap and Card List">
+            <span>📋 List</span>
+          </button>
+        </div>
+
+        <!-- 1A. LEARNING PATH VIEW (Winding Stepping Stones Map) -->
+        <div id="container-path-view" class="learning-path-container">
+          <div class="unit-banner-card">
+            <div class="unit-banner-left">
+              <div class="unit-dropdown-btn">
+                <span>A1 Beginner</span>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="16" height="16">
+                  <polyline points="6 9 12 15 18 9"/>
+                </svg>
+              </div>
+              <span class="unit-sub-label">Unit 1 · Getting Started</span>
+            </div>
+            <div class="unit-notebook-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20">
+                <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1-2.5-2.5Z"/>
+                <path d="M6 6h10"/>
+                <path d="M6 10h10"/>
+              </svg>
+            </div>
+          </div>
+
+          <!-- Stepping Stone Track with Nodes -->
+          <div id="path-winding-track" class="path-winding-track"></div>
+        </div>
+
+        <!-- 1B. STRUCTURED CARD LIST VIEW -->
+        <div id="container-list-view" style="display: none;">
+          <ol id="topic-list" class="topic-list" aria-label="Available topics list"></ol>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         2. SETUP SCREEN
+         ====================================================================== -->
+    <section id="screen-setup" class="screen" aria-labelledby="setup-topic-title">
+      <div class="screen-inner setup-inner">
+        <div class="setup-top">
+          <button type="button" id="btn-setup-back" class="back-btn-minimal" aria-label="Go back">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="19" y1="12" x2="5" y2="12"/>
+              <polyline points="12 19 5 12 12 5"/>
+            </svg>
+            <span>Back</span>
+          </button>
+          <button type="button" class="theme-toggle-btn" title="Mavzuni almashtirish (Yorug' / To'q)" aria-label="Mavzuni almashtirish">
+            <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18">
+              <circle cx="12" cy="12" r="5"/>
+              <line x1="12" y1="1" x2="12" y2="3"/>
+              <line x1="12" y1="21" x2="12" y2="23"/>
+            </svg>
+            <svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+            </svg>
+          </button>
+        </div>
+
+        <div class="setup-main">
+          <div>
+            <p id="setup-topic-number" class="setup-topic-label">Topic 01</p>
+            <h2 id="setup-topic-title" class="setup-topic-title">Introducing Yourself</h2>
+            <div class="setup-meta">
+              <span class="setup-meta-item">Length: <strong id="setup-word-count">92 words</strong></span>
+              <span class="setup-meta-item">Estimated time: <strong id="setup-estimated-time">0:48</strong></span>
+            </div>
+          </div>
+
+          <!-- LEVEL SELECTOR -->
+          <div class="control-group">
+            <div class="control-header">
+              <span id="level-group-label" class="control-label">Difficulty level</span>
+              <span id="setup-level-label" class="control-value">Level A1</span>
+            </div>
+            <div id="setup-level-selector" class="level-selector" role="group" aria-labelledby="level-group-label">
+              <button type="button" class="level-btn is-selected" data-level="A1" aria-pressed="true">A1 Easy</button>
+              <button type="button" class="level-btn" data-level="A2" aria-pressed="false">A2 Elementary</button>
+              <button type="button" class="level-btn" data-level="B1" aria-pressed="false">B1 Medium</button>
+            </div>
+          </div>
+
+          <!-- SPEED SCROLL BAR (SLIDER) -->
+          <div class="control-group">
+            <div class="control-header">
+              <label for="setup-speed-slider" class="control-label">Reading speed</label>
+              <span id="setup-pace-display" class="control-value">115 wpm</span>
+            </div>
+            <div class="slider-wrap">
+              <span class="slider-edge-label">Slow</span>
+              <input
+                type="range"
+                id="setup-speed-slider"
+                class="range-slider"
+                min="60"
+                max="200"
+                step="5"
+                value="115"
+                aria-label="Reading speed slider"
+              />
+              <span class="slider-edge-label">Fast</span>
+            </div>
+          </div>
+
+          <!-- VOCABULARY & TRANSLATION SECTION -->
+          <div class="vocab-section-card">
+            <div class="vocab-header">
+              <div class="vocab-title-wrap">
+                <svg class="vocab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20">
+                  <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1-2.5-2.5Z"/>
+                  <path d="M6 6h10"/>
+                  <path d="M6 10h10"/>
+                </svg>
+                <div>
+                  <h3 class="vocab-title">Mavzu lug'ati (Vocabulary)</h3>
+                  <p class="vocab-subtitle">So'zni bosing va talaffuzini eshiting</p>
+                </div>
+              </div>
+              <span id="vocab-level-tag" class="vocab-tag">Level A1</span>
+            </div>
+
+            <div id="vocab-list" class="vocab-list" role="list"></div>
+
+            <!-- Interactive Passage Preview -->
+            <details class="text-preview-details">
+              <summary class="text-preview-summary">
+                <span>To'liq matn (so'zlarni bosib eshiting)</span>
+                <svg class="chevron-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><polyline points="6 9 12 15 18 9"/></svg>
+              </summary>
+              <div id="interactive-passage-preview" class="interactive-passage"></div>
+            </details>
+          </div>
+
+          <button type="button" id="btn-start-reading" class="start-btn">Start Reading</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         3. READING SCREEN (TELEPROMPTER WITH MEADOW GLOW)
+         ====================================================================== -->
+    <section id="screen-reading" class="screen screen-reading" aria-label="Teleprompter reading view">
+      <canvas id="rain-canvas" class="rain-canvas" aria-hidden="true"></canvas>
+
+      <!-- Top floating status bar -->
+      <div class="reading-top-bar">
+        <div id="paused-banner" class="paused-banner" aria-live="polite">Paused</div>
+        <button type="button" class="theme-toggle-btn reading-theme-btn" title="Mavzuni almashtirish (Yorug' / To'q)" aria-label="Mavzuni almashtirish">
+          <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18">
+            <circle cx="12" cy="12" r="5"/>
+            <line x1="12" y1="1" x2="12" y2="3"/>
+            <line x1="12" y1="21" x2="12" y2="23"/>
+          </svg>
+          <svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Teleprompter stage -->
+      <div
+        id="teleprompter-stage"
+        class="teleprompter-stage"
+        role="region"
+        aria-label="Scrolling reading text. Tap or press Space to pause or resume."
+      >
+        <div class="edge-gradient edge-gradient-top" aria-hidden="true"></div>
+        <div class="focus-zone-band" aria-hidden="true"></div>
+        <div id="teleprompter-track" class="teleprompter-track"></div>
+        <div class="edge-gradient edge-gradient-bottom" aria-hidden="true"></div>
+
+        <div id="sequence-overlay" class="sequence-overlay">
+          <p id="sequence-prompt" class="sequence-prompt">Speak fast and clear</p>
+          <p id="sequence-sub" class="sequence-sub">Get ready to read aloud</p>
+          <div id="countdown-display" class="countdown-number" aria-live="assertive" aria-atomic="true"></div>
+        </div>
+      </div>
+
+      <!-- Bottom controls bar -->
+      <footer class="reading-controls-bar">
+        <div class="reading-controls-inner">
+          <div class="reading-speed-scroll-box">
+            <div class="reading-speed-top">
+              <label for="reading-speed-slider">Speed</label>
+              <strong id="reading-pace-info">115 wpm</strong>
+            </div>
+            <input
+              type="range"
+              id="reading-speed-slider"
+              class="range-slider"
+              min="60"
+              max="200"
+              step="5"
+              value="115"
+              aria-label="Reading speed in words per minute"
+            />
+          </div>
+
+          <div class="reading-action-group">
+            <button type="button" id="btn-pause-resume" class="pause-resume-btn" aria-pressed="false">Pause</button>
+            <button type="button" id="btn-exit-reading" class="exit-btn">Exit</button>
+          </div>
+        </div>
+      </footer>
+    </section>
+
+    <!-- ======================================================================
+         4. RESULT SCREEN (3 DIKTAFON QUESTIONS & STATS)
+         ====================================================================== -->
+    <section id="screen-result" class="screen" aria-labelledby="result-topic-title">
+      <div class="screen-inner result-inner">
+        <div class="result-block">
+          <div>
+            <p class="result-eyebrow">Session completed · +20 XP 🎉</p>
+            <h2 id="result-topic-title" class="result-topic-title">Introducing Yourself</h2>
+          </div>
+
+          <div class="result-stats">
+            <div class="result-stat-item">
+              <span class="result-stat-label">Level &amp; speed</span>
+              <span id="result-speed-used" class="result-stat-value">A1 · 115 wpm</span>
+            </div>
+            <div class="result-stat-item">
+              <span class="result-stat-label">Total time</span>
+              <span id="result-total-time" class="result-stat-value">0:48</span>
+            </div>
+          </div>
+
+          <!-- 3 SPEAKING QUESTIONS WITH 30s VOICE RECORDER -->
+          <div class="speaking-questions-section">
+            <div class="questions-header">
+              <h3 class="questions-title">Follow-up Speaking Questions</h3>
+              <p class="questions-subtitle">Practice answering out loud. Record up to 30 seconds per question with the built-in voice recorder.</p>
+            </div>
+            <div id="speaking-questions-container" class="speaking-questions-list"></div>
+          </div>
+
+          <div class="result-actions">
+            <button type="button" id="btn-read-again" class="result-primary-btn">Read again</button>
+            <button type="button" id="btn-jump-write" class="result-jump-write-btn">Write on this topic ✍</button>
+            <div class="result-secondary-row">
+              <button type="button" id="btn-next-topic" class="result-secondary-btn">Next topic</button>
+              <button type="button" id="btn-all-topics" class="result-secondary-btn">All topics</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         5. WRITING STUDIO SCREEN
+         ====================================================================== -->
+    <section id="screen-writing" class="screen" aria-labelledby="writing-heading">
+      <div class="screen-inner writing-inner">
+        
+        <div class="writing-top-bar">
+          <button type="button" id="btn-writing-back" class="back-btn-minimal" aria-label="Go back">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="19" y1="12" x2="5" y2="12"/>
+              <polyline points="12 19 5 12 12 5"/>
+            </svg>
+            <span>Back</span>
+          </button>
+          
+          <div class="writing-top-actions">
+            <button type="button" id="btn-writing-ambient" class="btn-ambient-sound" title="Ambient Rain animation toggle">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14">
+                <path d="M20 16.58A5 5 0 0 0 18 7h-1.26A8 8 0 1 0 4 15.25"/>
+                <path d="M8 19v2"/>
+                <path d="M16 19v2"/>
+              </svg>
+              <span>Rain Ambient</span>
+            </button>
+            <button type="button" class="theme-toggle-btn" title="Mavzuni almashtirish (Yorug' / To'q)" aria-label="Mavzuni almashtirish">
+              <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18">
+                <circle cx="12" cy="12" r="5"/>
+                <line x1="12" y1="1" x2="12" y2="3"/>
+                <line x1="12" y1="21" x2="12" y2="23"/>
+              </svg>
+              <svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18">
+                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <div class="writing-prompt-card">
+          <p id="writing-topic-label" class="writing-topic-label">Topic 01 · Writing Practice</p>
+          <h2 id="writing-heading" style="display:none;">Writing Studio</h2>
+          <p id="writing-prompt-text" class="writing-prompt-text">Write a short introduction about yourself: your name, where you live, your daily hobbies, and what you hope to achieve with your English studies.</p>
+        </div>
+
+        <!-- TARGET WORDS CHIPS SECTION -->
+        <div class="target-words-section">
+          <div class="target-words-header">
+            <span class="target-words-title">Target Vocabulary (Use all 5 in your essay)</span>
+            <span id="target-words-counter" class="target-words-counter">0 / 5 target words</span>
+          </div>
+          <div id="target-words-badges" class="target-words-badges"></div>
+        </div>
+
+        <!-- WRITING TEXTAREA & LIVE WORD COUNT -->
+        <div class="writing-editor-card">
+          <textarea
+            id="writing-textarea"
+            class="writing-textarea"
+            placeholder="Start writing your essay here in English... (Target: 50–100 words)"
+            rows="8"
+            aria-label="Essay writing area"
+          ></textarea>
+          
+          <div class="writing-status-bar">
+            <div class="word-count-indicator">
+              <span id="word-count-num" class="word-count-num">0</span>
+              <span class="word-count-range">/ 50–100 words</span>
+            </div>
+            <span id="autosave-status" class="autosave-status"></span>
+          </div>
+        </div>
+
+        <!-- ACTIONS ROW -->
+        <div class="writing-actions-row">
+          <button type="button" id="btn-speak-written-text" class="btn-speak-this-text">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="18" height="18">
+              <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" fill="currentColor"/>
+              <path d="M15.54 8.46a5 5 0 0 1 0 7.07"/>
+            </svg>
+            <span>Practice Speaking This Text in Teleprompter</span>
+          </button>
+          
+          <div class="writing-secondary-actions">
+            <button type="button" id="btn-save-writing" class="btn-save-writing">Save Writing</button>
+            <button type="button" id="btn-clear-writing" class="btn-clear-writing">Clear</button>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         6. SAVED AUDIO RECORDINGS MODAL
+         ====================================================================== -->
+    <div id="modal-recordings" class="modal-backdrop" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="modal-rec-title">
+      <div class="modal-card">
+        <div class="modal-header">
+          <div>
+            <h3 id="modal-rec-title" class="modal-title">Ovozli yozuvlar (Diktafon)</h3>
+            <p class="modal-sub">Maksimal 3 dona audio saqlanadi (FIFO)</p>
+          </div>
+          <button type="button" id="btn-close-modal" class="modal-close-btn" aria-label="Yopish">&times;</button>
+        </div>
+        <div id="modal-recordings-list" class="modal-list"></div>
+      </div>
+    </div>
+
+    <!-- ======================================================================
+         7. FLOATING BOTTOM NAVIGATION DOCK (DUOLINGO-STYLE)
+         ====================================================================== -->
+    <nav class="floating-bottom-dock" aria-label="Primary navigation">
+      <button type="button" id="dock-btn-path" class="dock-tab-btn is-active" title="Learning Path">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3">
+          <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+          <polyline points="9 22 9 12 15 12 15 22"/>
+        </svg>
+        <span>Path</span>
+      </button>
+
+      <button type="button" id="dock-btn-speaking" class="dock-tab-btn" title="Speaking Practice">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3">
+          <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
+          <path d="M15.54 8.46a5 5 0 0 1 0 7.07"/>
+        </svg>
+        <span>Speaking</span>
+      </button>
+
+      <button type="button" id="dock-btn-writing" class="dock-tab-btn" title="Writing Studio">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3">
+          <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
+          <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
+        </svg>
+        <span>Writing</span>
+      </button>
+
+      <button type="button" id="dock-btn-recordings" class="dock-tab-btn" title="Audio Recordings">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3">
+          <path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/>
+          <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
+          <line x1="12" x2="12" y1="19" y2="22"/>
+        </svg>
+        <span>Audios</span>
+      </button>
+
+      <button type="button" id="dock-btn-theme" class="dock-tab-btn" title="Day/Night Theme">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3">
+          <circle cx="12" cy="12" r="5"/>
+          <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+        </svg>
+        <span>Theme</span>
+      </button>
+    </nav>
+
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
