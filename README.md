@@ -21,7 +21,7 @@
   - 🏆 **Silver League:** Displays current rank tier (e.g. Silver · Top 12%).
 - **Cute Learning Buddy Mascot:** Cheerful green leaf-eared mascot avatar cheering you on ("Hey, Champion! Let's keep your streak going!").
 - **Featured Hero Card:** Deep forest green card highlighting your current lesson with a smooth animated progress bar.
-- **Floating Bottom Navigation Dock:** Sleek pill-shaped dock with tabs for **Path**, **Speaking**, **Writing**, **Audios**, and **Theme**.
+- **Floating Bottom Navigation Dock:** Sleek pill-shaped dock with tabs for **Path**, **Speaking**, **Writing**, **Audios**, and **Profile**.
 
 ---
 

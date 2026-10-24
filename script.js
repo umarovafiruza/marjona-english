@@ -2630,10 +2630,10 @@ const UIController = {
       });
     }
 
-    const dockTheme = document.getElementById("dock-btn-theme");
-    if (dockTheme) {
-      dockTheme.addEventListener("click", () => {
-        this.toggleTheme();
+    const dockProfile = document.getElementById("dock-btn-profile");
+    if (dockProfile) {
+      dockProfile.addEventListener("click", () => {
+        this.openSettingsModal();
       });
     }
 
