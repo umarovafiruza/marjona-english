@@ -22,12 +22,10 @@
         <!-- App Header Bar -->
         <header class="site-header">
           <div class="header-left">
-            <button type="button" class="icon-circle-btn" id="header-menu-btn" title="Menu" aria-label="Menu">
-              <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18">
-                <circle cx="6" cy="6" r="2.2"/>
-                <circle cx="18" cy="6" r="2.2"/>
-                <circle cx="6" cy="18" r="2.2"/>
-                <circle cx="18" cy="18" r="2.2"/>
+            <button type="button" class="icon-circle-btn" id="header-menu-btn" title="Sozlamalar va Profil" aria-label="Sozlamalar va Profil">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18">
+                <circle cx="12" cy="12" r="3"/>
+                <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
               </svg>
             </button>
           </div>
@@ -79,8 +77,8 @@
           </div>
 
           <!-- Cute Gamified Leaf-Eared Mascot Avatar -->
-          <div class="mascot-avatar-wrap" title="Your learning buddy">
-            <div class="mascot-avatar-inner">
+          <div class="mascot-avatar-wrap" id="user-avatar-btn" title="Profilni tahrirlash (Sozlamalar)" role="button" tabindex="0">
+            <div class="mascot-avatar-inner" id="user-avatar-display">
               <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <!-- Mascot Hood/Head -->
                 <circle cx="50" cy="54" r="38" fill="#4ADE80"/>
@@ -102,6 +100,7 @@
                 <path d="M46 63 Q50 68 54 63" stroke="#152718" stroke-width="2.5" stroke-linecap="round"/>
               </svg>
             </div>
+            <span class="avatar-edit-badge" title="Tahrirlash">✏️</span>
           </div>
         </div>
 
@@ -514,6 +513,101 @@
 
       </div>
     </section>
+
+    <!-- ======================================================================
+         5B. USER PROFILE & SETTINGS MODAL
+         ====================================================================== -->
+    <div id="modal-settings" class="modal-backdrop" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="modal-settings-title">
+      <div class="modal-card modal-card-settings">
+        <div class="modal-header">
+          <div>
+            <h3 id="modal-settings-title" class="modal-title">Profil va Sozlamalar</h3>
+            <p class="modal-sub">Hisobingiz va ilova ko'rinishini sozlang</p>
+          </div>
+          <button type="button" id="btn-close-settings-modal" class="modal-close-btn" aria-label="Yopish">&times;</button>
+        </div>
+
+        <form id="form-user-settings" class="settings-form" onsubmit="return false;">
+          <!-- Name Input -->
+          <div class="settings-group">
+            <label for="input-user-name" class="settings-label">
+              <span>Ismingiz</span>
+              <span class="settings-label-hint">Salomlashuvda ko'rinadi</span>
+            </label>
+            <div class="settings-input-wrap">
+              <span class="settings-input-icon">👤</span>
+              <input type="text" id="input-user-name" class="settings-text-input" placeholder="Ismingizni kiriting..." maxlength="24" autocomplete="off" />
+            </div>
+          </div>
+
+          <!-- Avatar Picker -->
+          <div class="settings-group">
+            <label class="settings-label">
+              <span>Avatarni tanlang</span>
+              <span class="settings-label-hint">6 ta qahramondan biri</span>
+            </label>
+            <div class="avatar-picker-grid" id="avatar-picker-grid">
+              <!-- Rendered dynamically by script.js -->
+            </div>
+          </div>
+
+          <!-- Theme Switch (Oq / Qora fon) -->
+          <div class="settings-group settings-theme-box">
+            <div class="theme-info-wrap">
+              <div class="theme-label-title">
+                <span class="theme-mode-icon" id="settings-theme-icon">🌙</span>
+                <span class="settings-label-text">Tungi rejim (Dark Forest)</span>
+              </div>
+              <span class="settings-label-hint">Sayt fonini oq / qora qilish</span>
+            </div>
+            <label class="theme-switch" for="settings-theme-toggle" title="Tungi rejimni yoqish / o'chirish">
+              <input type="checkbox" id="settings-theme-toggle" />
+              <span class="theme-switch-slider"></span>
+            </label>
+          </div>
+
+          <!-- Action buttons -->
+          <div class="modal-actions-row">
+            <button type="button" id="btn-cancel-settings" class="settings-btn-secondary">Yopish</button>
+            <button type="button" id="btn-save-settings" class="settings-btn-primary">Saqlash ✨</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- ======================================================================
+         5C. FIRST-TIME WELCOME ONBOARDING MODAL
+         ====================================================================== -->
+    <div id="modal-welcome" class="modal-backdrop" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="modal-welcome-title">
+      <div class="modal-card modal-card-welcome">
+        <div class="welcome-header-badge">👋 Xush kelibsiz!</div>
+        <h3 id="modal-welcome-title" class="welcome-title">Speakline ga xush kelibsiz!</h3>
+        <p class="welcome-sub">Ingliz tilida ravon gapirish va yozish studiyasi. Boshlashdan oldin o'zingizni tanishtiring:</p>
+
+        <form id="form-welcome-onboarding" class="settings-form" onsubmit="return false;">
+          <div class="settings-group">
+            <label for="input-welcome-name" class="settings-label">
+              <span>Ismingiz</span>
+            </label>
+            <div class="settings-input-wrap">
+              <span class="settings-input-icon">✨</span>
+              <input type="text" id="input-welcome-name" class="settings-text-input" placeholder="Masalan: Marjona" maxlength="24" autocomplete="off" />
+            </div>
+          </div>
+
+          <div class="settings-group">
+            <label class="settings-label">
+              <span>Sevimli avataringizni tanlang</span>
+            </label>
+            <div class="avatar-picker-grid" id="welcome-avatar-picker-grid">
+              <!-- Rendered dynamically -->
+            </div>
+          </div>
+
+          <button type="button" id="btn-start-onboarding" class="welcome-start-btn">Boshladik! 🚀</button>
+        </form>
+      </div>
+    </div>
 
     <!-- ======================================================================
          6. SAVED AUDIO RECORDINGS MODAL

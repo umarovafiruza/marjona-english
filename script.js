@@ -300,6 +300,123 @@ const TOPIC_VOCABULARY = {
    2. STORAGE MODULE (LOCALSTORAGE WRAPPER)
    ========================================================================== */
 
+const AVATARS = {
+  sprout: {
+    id: "sprout",
+    name: "Sprout (Maysa)",
+    svg: `<svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="50" cy="54" r="38" fill="#4ADE80"/>
+      <ellipse cx="28" cy="22" rx="10" ry="16" transform="rotate(-25 28 22)" fill="#84CC16"/>
+      <ellipse cx="72" cy="22" rx="10" ry="16" transform="rotate(25 72 22)" fill="#84CC16"/>
+      <path d="M50 14 C48 6, 52 6, 50 2" stroke="#65A30D" stroke-width="3" stroke-linecap="round"/>
+      <ellipse cx="50" cy="58" rx="28" ry="24" fill="#FFFFFF"/>
+      <circle cx="41" cy="54" r="3.5" fill="#152718"/>
+      <circle cx="59" cy="54" r="3.5" fill="#152718"/>
+      <circle cx="42" cy="53" r="1.2" fill="#FFFFFF"/>
+      <circle cx="60" cy="53" r="1.2" fill="#FFFFFF"/>
+      <ellipse cx="34" cy="62" rx="4.5" ry="3" fill="#FDA4AF"/>
+      <ellipse cx="66" cy="62" rx="4.5" ry="3" fill="#FDA4AF"/>
+      <path d="M46 63 Q50 68 54 63" stroke="#152718" stroke-width="2.5" stroke-linecap="round"/>
+    </svg>`
+  },
+  owl: {
+    id: "owl",
+    name: "Wise Owl (Boyqush)",
+    svg: `<svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="50" cy="52" r="38" fill="#10B981"/>
+      <path d="M22 28 Q30 18 38 32 Z" fill="#059669"/>
+      <path d="M78 28 Q70 18 62 32 Z" fill="#059669"/>
+      <circle cx="36" cy="48" r="14" fill="#FFFFFF"/>
+      <circle cx="64" cy="48" r="14" fill="#FFFFFF"/>
+      <circle cx="36" cy="48" r="7" fill="#0F172A"/>
+      <circle cx="64" cy="48" r="7" fill="#0F172A"/>
+      <circle cx="34" cy="45" r="2.5" fill="#FFFFFF"/>
+      <circle cx="62" cy="45" r="2.5" fill="#FFFFFF"/>
+      <polygon points="50,54 44,64 56,64" fill="#F59E0B"/>
+      <ellipse cx="50" cy="74" rx="18" ry="12" fill="#D1FAE5"/>
+      <path d="M44 72 Q50 76 56 72" stroke="#10B981" stroke-width="2" fill="none" stroke-linecap="round"/>
+    </svg>`
+  },
+  fox: {
+    id: "fox",
+    name: "Clever Fox (Tulki)",
+    svg: `<svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <polygon points="20,18 36,44 14,46" fill="#EA580C"/>
+      <polygon points="22,24 33,42 18,44" fill="#FED7AA"/>
+      <polygon points="80,18 64,44 86,46" fill="#EA580C"/>
+      <polygon points="78,24 67,42 82,44" fill="#FED7AA"/>
+      <circle cx="50" cy="54" r="36" fill="#F97316"/>
+      <path d="M20 54 Q35 78 50 78 Q65 78 80 54 Q65 64 50 64 Q35 64 20 54 Z" fill="#FFFFFF"/>
+      <circle cx="36" cy="50" r="4" fill="#1C1917"/>
+      <circle cx="64" cy="50" r="4" fill="#1C1917"/>
+      <circle cx="35" cy="48.5" r="1.5" fill="#FFFFFF"/>
+      <circle cx="63" cy="48.5" r="1.5" fill="#FFFFFF"/>
+      <ellipse cx="50" cy="68" rx="4.5" ry="3.5" fill="#1C1917"/>
+      <path d="M47 70 Q50 73 53 70" stroke="#1C1917" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>`
+  },
+  panda: {
+    id: "panda",
+    name: "Cozy Panda",
+    svg: `<svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="24" cy="28" r="12" fill="#1E293B"/>
+      <circle cx="76" cy="28" r="12" fill="#1E293B"/>
+      <circle cx="50" cy="54" r="38" fill="#F8FAFC"/>
+      <circle cx="50" cy="54" r="38" stroke="#E2E8F0" stroke-width="2"/>
+      <ellipse cx="35" cy="48" rx="9" ry="12" transform="rotate(-15 35 48)" fill="#1E293B"/>
+      <ellipse cx="65" cy="48" rx="9" ry="12" transform="rotate(15 65 48)" fill="#1E293B"/>
+      <circle cx="35" cy="47" r="3.5" fill="#FFFFFF"/>
+      <circle cx="65" cy="47" r="3.5" fill="#FFFFFF"/>
+      <circle cx="34" cy="46" r="1.2" fill="#1E293B"/>
+      <circle cx="64" cy="46" r="1.2" fill="#1E293B"/>
+      <ellipse cx="50" cy="62" rx="5" ry="3.5" fill="#1E293B"/>
+      <path d="M46 66 Q50 70 54 66" stroke="#1E293B" stroke-width="2" stroke-linecap="round" fill="none"/>
+      <ellipse cx="28" cy="60" rx="4" ry="2.5" fill="#FDA4AF"/>
+      <ellipse cx="72" cy="60" rx="4" ry="2.5" fill="#FDA4AF"/>
+    </svg>`
+  },
+  astro: {
+    id: "astro",
+    name: "Space Explorer",
+    svg: `<svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="visorGrad_astro" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stop-color="#38BDF8"/>
+          <stop offset="50%" stop-color="#6366F1"/>
+          <stop offset="100%" stop-color="#1E1B4B"/>
+        </linearGradient>
+      </defs>
+      <circle cx="50" cy="50" r="38" fill="#E2E8F0"/>
+      <circle cx="50" cy="50" r="38" stroke="#94A3B8" stroke-width="3"/>
+      <rect x="8" y="44" width="8" height="14" rx="4" fill="#3B82F6"/>
+      <rect x="84" y="44" width="8" height="14" rx="4" fill="#3B82F6"/>
+      <rect x="22" y="28" width="56" height="42" rx="18" fill="url(#visorGrad_astro)"/>
+      <ellipse cx="38" cy="38" rx="10" ry="4" transform="rotate(-20 38 38)" fill="rgba(255,255,255,0.7)"/>
+      <circle cx="50" cy="80" r="3" fill="#F59E0B"/>
+    </svg>`
+  },
+  champion: {
+    id: "champion",
+    name: "Crown Champion",
+    svg: `<svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="50" cy="54" r="38" fill="#FEF08A"/>
+      <circle cx="50" cy="54" r="38" stroke="#F59E0B" stroke-width="3"/>
+      <path d="M26 36 L34 22 L50 32 L66 22 L74 36 Z" fill="#F59E0B"/>
+      <circle cx="34" cy="20" r="3" fill="#EF4444"/>
+      <circle cx="50" cy="29" r="3.5" fill="#3B82F6"/>
+      <circle cx="66" cy="20" r="3" fill="#EF4444"/>
+      <circle cx="38" cy="52" r="4" fill="#78350F"/>
+      <circle cx="62" cy="52" r="4" fill="#78350F"/>
+      <circle cx="39" cy="50.5" r="1.5" fill="#FFFFFF"/>
+      <circle cx="63" cy="50.5" r="1.5" fill="#FFFFFF"/>
+      <ellipse cx="30" cy="60" rx="4" ry="2.5" fill="#FCA5A5"/>
+      <ellipse cx="70" cy="60" rx="4" ry="2.5" fill="#FCA5A5"/>
+      <path d="M38 60 Q50 74 62 60" stroke="#78350F" stroke-width="3" stroke-linecap="round" fill="#DC2626"/>
+      <path d="M42 62 Q50 67 58 62" fill="#FFFFFF"/>
+    </svg>`
+  }
+};
+
 const STORAGE_KEYS = {
   MODE: "speakline_active_mode",
   THEME: "speakline_theme",
@@ -313,7 +430,10 @@ const STORAGE_KEYS = {
   STREAK: "speakline_streak_days",
   XP: "speakline_total_xp",
   GEMS: "speakline_total_gems",
-  VIEW_MODE: "speakline_view_mode"
+  VIEW_MODE: "speakline_view_mode",
+  USER_NAME: "speakline_user_name",
+  USER_AVATAR: "speakline_user_avatar",
+  ONBOARDED: "speakline_has_onboarded"
 };
 
 const StorageManager = {
@@ -528,6 +648,50 @@ const StorageManager = {
       return list;
     } catch (e) {}
     return [];
+  },
+
+  getUserName() {
+    try {
+      const name = localStorage.getItem(STORAGE_KEYS.USER_NAME);
+      if (name && name.trim().length > 0) return name.trim();
+    } catch (e) {}
+    return "Champion";
+  },
+
+  setUserName(name) {
+    try {
+      const cleaned = (name || "").trim().slice(0, 24);
+      localStorage.setItem(STORAGE_KEYS.USER_NAME, cleaned || "Champion");
+    } catch (e) {}
+  },
+
+  getUserAvatar() {
+    try {
+      const av = localStorage.getItem(STORAGE_KEYS.USER_AVATAR);
+      if (av && AVATARS[av]) return av;
+    } catch (e) {}
+    return "sprout";
+  },
+
+  setUserAvatar(avatarId) {
+    try {
+      if (AVATARS[avatarId]) {
+        localStorage.setItem(STORAGE_KEYS.USER_AVATAR, avatarId);
+      }
+    } catch (e) {}
+  },
+
+  hasOnboarded() {
+    try {
+      return localStorage.getItem(STORAGE_KEYS.ONBOARDED) === "true";
+    } catch (e) {}
+    return false;
+  },
+
+  setOnboarded(val = true) {
+    try {
+      localStorage.setItem(STORAGE_KEYS.ONBOARDED, val ? "true" : "false");
+    } catch (e) {}
   }
 };
 
@@ -538,6 +702,8 @@ const StorageManager = {
 const AppState = {
   mode: StorageManager.getMode(),
   theme: StorageManager.getTheme(),
+  userName: StorageManager.getUserName(),
+  userAvatar: StorageManager.getUserAvatar(),
   streak: StorageManager.getStreak(),
   xp: StorageManager.getXP(),
   gems: StorageManager.getGems(),
@@ -1383,12 +1549,21 @@ const UIController = {
     this.applyTheme(AppState.theme);
     this.applyMode(AppState.mode);
     this.applyViewMode(AppState.viewMode);
+    this.applyUserProfile();
     this.updateGamifiedHeader();
     this.renderLearningPath();
     this.renderTopicsList();
+    this.renderAvatarPickers();
     this.bindEvents();
     this.syncSetupControls();
     this.updateRecordingsBadge();
+
+    // Check first-time onboarding
+    if (!StorageManager.hasOnboarded()) {
+      setTimeout(() => {
+        this.openWelcomeModal();
+      }, 450);
+    }
   },
 
   updateGamifiedHeader() {
@@ -1626,11 +1801,156 @@ const UIController = {
         isLight ? "To'q ko'k fonga o'tish (Dark mode)" : "Oq fonga o'tish (Light mode)"
       );
     });
+
+    const toggle = document.getElementById("settings-theme-toggle");
+    if (toggle) toggle.checked = !isLight;
+    const themeIcon = document.getElementById("settings-theme-icon");
+    if (themeIcon) themeIcon.textContent = isLight ? "☀️" : "🌙";
   },
 
   toggleTheme() {
     const next = AppState.theme === "light" ? "dark" : "light";
     this.applyTheme(next);
+  },
+
+  applyUserProfile() {
+    const heading = document.getElementById("brand-heading");
+    if (heading) {
+      heading.textContent = `Hey, ${AppState.userName}!`;
+    }
+
+    const display = document.getElementById("user-avatar-display");
+    if (display) {
+      const av = AVATARS[AppState.userAvatar] || AVATARS.sprout;
+      display.innerHTML = av.svg;
+    }
+  },
+
+  renderAvatarPickers() {
+    const grids = [
+      { id: "avatar-picker-grid", current: AppState.userAvatar },
+      { id: "welcome-avatar-picker-grid", current: AppState.userAvatar }
+    ];
+
+    grids.forEach(({ id, current }) => {
+      const container = document.getElementById(id);
+      if (!container) return;
+      container.innerHTML = "";
+
+      Object.values(AVATARS).forEach((av) => {
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = `avatar-choice-btn ${av.id === current ? "is-selected" : ""}`;
+        btn.setAttribute("data-avatar-id", av.id);
+        btn.title = av.name;
+        btn.innerHTML = av.svg;
+
+        btn.addEventListener("click", () => {
+          container.querySelectorAll(".avatar-choice-btn").forEach((b) => b.classList.remove("is-selected"));
+          btn.classList.add("is-selected");
+        });
+
+        container.appendChild(btn);
+      });
+    });
+  },
+
+  openSettingsModal() {
+    const modal = document.getElementById("modal-settings");
+    if (!modal) return;
+
+    const input = document.getElementById("input-user-name");
+    if (input) input.value = AppState.userName;
+
+    const grid = document.getElementById("avatar-picker-grid");
+    if (grid) {
+      grid.querySelectorAll(".avatar-choice-btn").forEach((b) => {
+        b.classList.toggle("is-selected", b.getAttribute("data-avatar-id") === AppState.userAvatar);
+      });
+    }
+
+    const toggle = document.getElementById("settings-theme-toggle");
+    if (toggle) toggle.checked = (AppState.theme === "dark");
+
+    const themeIcon = document.getElementById("settings-theme-icon");
+    if (themeIcon) themeIcon.textContent = (AppState.theme === "dark") ? "🌙" : "☀️";
+
+    modal.classList.add("is-open");
+    modal.setAttribute("aria-hidden", "false");
+    if (input) {
+      setTimeout(() => input.focus(), 100);
+    }
+  },
+
+  closeSettingsModal() {
+    const modal = document.getElementById("modal-settings");
+    if (!modal) return;
+    modal.classList.remove("is-open");
+    modal.setAttribute("aria-hidden", "true");
+  },
+
+  saveSettings() {
+    const input = document.getElementById("input-user-name");
+    const nameVal = input ? input.value.trim() : "";
+    const finalName = nameVal || "Champion";
+
+    const selectedBtn = document.querySelector("#avatar-picker-grid .avatar-choice-btn.is-selected");
+    const finalAvatar = selectedBtn ? selectedBtn.getAttribute("data-avatar-id") : AppState.userAvatar;
+
+    StorageManager.setUserName(finalName);
+    StorageManager.setUserAvatar(finalAvatar);
+    AppState.userName = finalName;
+    AppState.userAvatar = finalAvatar;
+
+    this.applyUserProfile();
+    this.closeSettingsModal();
+  },
+
+  openWelcomeModal() {
+    const modal = document.getElementById("modal-welcome");
+    if (!modal) return;
+
+    const input = document.getElementById("input-welcome-name");
+    if (input) input.value = (AppState.userName !== "Champion") ? AppState.userName : "";
+
+    const grid = document.getElementById("welcome-avatar-picker-grid");
+    if (grid) {
+      grid.querySelectorAll(".avatar-choice-btn").forEach((b) => {
+        b.classList.toggle("is-selected", b.getAttribute("data-avatar-id") === AppState.userAvatar);
+      });
+    }
+
+    modal.classList.add("is-open");
+    modal.setAttribute("aria-hidden", "false");
+    if (input) {
+      setTimeout(() => input.focus(), 150);
+    }
+  },
+
+  closeWelcomeModal() {
+    const modal = document.getElementById("modal-welcome");
+    if (!modal) return;
+    modal.classList.remove("is-open");
+    modal.setAttribute("aria-hidden", "true");
+  },
+
+  completeOnboarding() {
+    const input = document.getElementById("input-welcome-name");
+    const nameVal = input ? input.value.trim() : "";
+    const finalName = nameVal || "Champion";
+
+    const selectedBtn = document.querySelector("#welcome-avatar-picker-grid .avatar-choice-btn.is-selected");
+    const finalAvatar = selectedBtn ? selectedBtn.getAttribute("data-avatar-id") : "sprout";
+
+    StorageManager.setUserName(finalName);
+    StorageManager.setUserAvatar(finalAvatar);
+    StorageManager.setOnboarded(true);
+
+    AppState.userName = finalName;
+    AppState.userAvatar = finalAvatar;
+
+    this.applyUserProfile();
+    this.closeWelcomeModal();
   },
 
   switchScreen(targetScreen) {
@@ -2337,6 +2657,82 @@ const UIController = {
       modalBackdrop.addEventListener("click", (e) => {
         if (e.target === modalBackdrop) {
           this.closeRecordingsModal();
+        }
+      });
+    }
+
+    // Settings & Profile Modal Events
+    const headerMenuBtn = document.getElementById("header-menu-btn");
+    if (headerMenuBtn) {
+      headerMenuBtn.addEventListener("click", () => {
+        this.openSettingsModal();
+      });
+    }
+
+    const userAvatarBtn = document.getElementById("user-avatar-btn");
+    if (userAvatarBtn) {
+      userAvatarBtn.addEventListener("click", () => {
+        this.openSettingsModal();
+      });
+      userAvatarBtn.addEventListener("keydown", (e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          this.openSettingsModal();
+        }
+      });
+    }
+
+    const btnCloseSettings = document.getElementById("btn-close-settings-modal");
+    if (btnCloseSettings) {
+      btnCloseSettings.addEventListener("click", () => {
+        this.closeSettingsModal();
+      });
+    }
+
+    const btnCancelSettings = document.getElementById("btn-cancel-settings");
+    if (btnCancelSettings) {
+      btnCancelSettings.addEventListener("click", () => {
+        this.closeSettingsModal();
+      });
+    }
+
+    const btnSaveSettings = document.getElementById("btn-save-settings");
+    if (btnSaveSettings) {
+      btnSaveSettings.addEventListener("click", () => {
+        this.saveSettings();
+      });
+    }
+
+    const settingsThemeToggle = document.getElementById("settings-theme-toggle");
+    if (settingsThemeToggle) {
+      settingsThemeToggle.addEventListener("change", (e) => {
+        const next = e.target.checked ? "dark" : "light";
+        this.applyTheme(next);
+      });
+    }
+
+    const modalSettingsBackdrop = document.getElementById("modal-settings");
+    if (modalSettingsBackdrop) {
+      modalSettingsBackdrop.addEventListener("click", (e) => {
+        if (e.target === modalSettingsBackdrop) {
+          this.closeSettingsModal();
+        }
+      });
+    }
+
+    // Welcome Onboarding Events
+    const btnStartOnboarding = document.getElementById("btn-start-onboarding");
+    if (btnStartOnboarding) {
+      btnStartOnboarding.addEventListener("click", () => {
+        this.completeOnboarding();
+      });
+    }
+
+    const modalWelcomeBackdrop = document.getElementById("modal-welcome");
+    if (modalWelcomeBackdrop) {
+      modalWelcomeBackdrop.addEventListener("click", (e) => {
+        if (e.target === modalWelcomeBackdrop) {
+          this.completeOnboarding();
         }
       });
     }

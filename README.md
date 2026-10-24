@@ -45,7 +45,16 @@
 
 ---
 
-### 🎨 4. Day & Night Modes
+### 👤 4. User Profile, Custom Avatar & Settings Modal
+- **Personalized Account:** Enter and edit your display name ("Hey, [Name]!") anytime.
+- **6 Gamified Avatars:** Choose from 6 cute characters (Mascot Sprout, Wise Owl, Clever Fox, Cozy Panda, Space Explorer, Crown Champion).
+- **Theme Switcher:** Seamlessly switch between Light (Meadow) and Dark (Night Forest) mode directly from the settings dialog or the top header / bottom dock.
+- **First-Time Welcome Onboarding:** New learners are welcomed with a friendly onboarding dialog to introduce themselves and pick an avatar.
+- **Zero-Backend LocalStorage Persistence:** All settings are stored locally in the user's browser with instant reactivity.
+
+---
+
+### 🎨 5. Day & Night Modes
 - **Day Mode (Lush Meadow):** Light lime and grassy green gradients with fresh white cards.
 - **Night Forest Mode:** Deep midnight pine and emerald dark theme (`#0B1C13` / `#102B1E`) with luminous green accents.
 
