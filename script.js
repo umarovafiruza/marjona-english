@@ -1548,12 +1548,11 @@ const UIController = {
   init() {
     this.applyTheme(AppState.theme);
     this.applyMode(AppState.mode);
-    this.applyViewMode(AppState.viewMode);
     this.applyUserProfile();
-    this.updateGamifiedHeader();
-    this.renderLearningPath();
-    this.renderTopicsList();
+    this.renderSpeakingCardTopics();
     this.renderAvatarPickers();
+    this.initListeningModule();
+    this.initReadingModule();
     this.bindEvents();
     this.syncSetupControls();
     this.updateRecordingsBadge();
@@ -1619,97 +1618,310 @@ const UIController = {
     this.applyViewMode(next);
   },
 
-  renderLearningPath() {
-    const trackEl = document.getElementById("path-winding-track");
-    if (!trackEl) return;
-    trackEl.innerHTML = "";
+  renderSpeakingCardTopics() {
+    const container = document.getElementById("speaking-card-topics-list");
+    if (!container) return;
+    container.innerHTML = "";
 
     const completedMap = StorageManager.getCompletedTopics();
-    const isSpeakingMode = AppState.mode === "speaking";
 
-    const nodeIcons = [
-      `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" width="28" height="28"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>`,
-      `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" width="28" height="28"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1-2.5-2.5Z"/><path d="M6 6h10"/><path d="M6 10h10"/></svg>`,
-      `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" width="28" height="28"><path d="M20 12v10H4V12"/><path d="M2 7h20v5H2z"/><path d="M12 22V7"/><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/></svg>`,
-      `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" width="28" height="28"><path d="m6.5 6.5 11 11"/><path d="m21 21-1-1"/><path d="m3 3 1 1"/><path d="m18 22 4-4"/><path d="m2 6 4-4"/><path d="m3 10 7-7"/><path d="m14 21 7-7"/></svg>`,
-      `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" width="28" height="28"><path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z"/></svg>`,
-      `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" width="28" height="28"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>`,
-      `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" width="28" height="28"><rect width="20" height="14" x="2" y="7" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>`,
-      `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" width="28" height="28"><rect width="20" height="14" x="2" y="3" rx="2"/><line x1="8" x2="16" y1="21" y2="21"/><line x1="12" x2="12" y1="17" y2="21"/></svg>`,
-      `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" width="28" height="28"><path d="M12 10a6 6 0 0 0-6-6c-3 0-3 6-3 6a6 6 0 0 0 9 6"/><path d="M12 10a6 6 0 0 1 6-6c3 0 3 6 3 6a6 6 0 0 1-9 6"/><path d="M12 14v8"/></svg>`,
-      `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" width="28" height="28"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></svg>`
-    ];
-
-    const offsetClasses = [
-      "offset-center",
-      "offset-right",
-      "offset-center",
-      "offset-left",
-      "offset-center",
-      "offset-right",
-      "offset-center",
-      "offset-left",
-      "offset-center",
-      "offset-right"
-    ];
-
-    let foundFirstIncomplete = false;
-
-    TOPICS.forEach((topic, idx) => {
-      if (idx === 4) {
-        const sep = document.createElement("div");
-        sep.className = "unit-separator-row";
-        sep.innerHTML = `
-          <div class="unit-separator-line"></div>
-          <span class="unit-separator-badge">Unit 2 · Real Life Situations</span>
-          <div class="unit-separator-line"></div>
-        `;
-        trackEl.appendChild(sep);
-      }
-
+    TOPICS.forEach((topic) => {
+      const isCompleted = !!(completedMap[topic.id] && completedMap[topic.id].completed);
       const row = document.createElement("div");
-      row.className = `path-node-row ${offsetClasses[idx] || "offset-center"}`;
+      row.className = "speaking-topic-row";
+      row.setAttribute("data-topic-id", String(topic.id));
 
-      const btn = document.createElement("button");
-      btn.type = "button";
-      btn.className = "stepping-stone-btn";
-      btn.setAttribute("title", `${topic.title}`);
-      btn.setAttribute("aria-label", `${topic.title}`);
+      const numStr = String(topic.id).padStart(2, "0");
+      row.innerHTML = `
+        <div class="speaking-topic-left">
+          <span class="speaking-topic-num">${isCompleted ? "✔" : numStr}</span>
+          <div class="speaking-topic-info">
+            <span class="speaking-topic-title">${escapeHtml(topic.title)}</span>
+            <span class="speaking-topic-tag">Level ${topic.defaultLevel || "A1"}${isCompleted ? " · Bajarildi" : ""}</span>
+          </div>
+        </div>
+        <button type="button" class="speaking-topic-start-btn" title="${escapeHtml(topic.title)} mavzusida gapirish">
+          <span>Gapirish</span>
+          <span>🎙️</span>
+        </button>
+      `;
 
-      const isCompleted = isSpeakingMode
-        ? !!(completedMap[topic.id] && completedMap[topic.id].completed)
-        : !!(StorageManager.getTopicWriting(topic.id) && StorageManager.getTopicWriting(topic.id).wordCount >= 50);
-
-      const isBonus = idx === 2 || idx === 9;
-
-      if (isCompleted) {
-        btn.classList.add("is-completed-node");
-        btn.innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" width="28" height="28"><polyline points="20 6 9 17 4 12"/></svg>`;
-      } else if (!foundFirstIncomplete) {
-        foundFirstIncomplete = true;
-        btn.classList.add("is-active-node");
-        btn.innerHTML = `
-          <div class="start-tooltip-badge">Start</div>
-          ${nodeIcons[idx] || nodeIcons[0]}
-        `;
-      } else {
-        if (isBonus) {
-          btn.classList.add("is-bonus-node");
-        }
-        btn.innerHTML = nodeIcons[idx] || nodeIcons[0];
-      }
-
-      btn.addEventListener("click", () => {
-        if (AppState.mode === "speaking") {
-          this.openSetupScreen(topic.id);
-        } else {
-          this.openWritingScreen(topic.id);
-        }
+      row.addEventListener("click", () => {
+        this.openSetupScreen(topic.id);
       });
 
-      row.appendChild(btn);
-      trackEl.appendChild(row);
+      container.appendChild(row);
     });
+  },
+
+  renderLearningPath() {
+    this.renderSpeakingCardTopics();
+  },
+
+  renderTopicsList() {
+    this.renderSpeakingCardTopics();
+  },
+
+  /* --------------------------------------------------------------------------
+     LISTENING PRACTICE MODULE
+     -------------------------------------------------------------------------- */
+
+  initListeningModule() {
+    const topicSelect = document.getElementById("listening-topic-select");
+    if (!topicSelect) return;
+    topicSelect.innerHTML = "";
+    TOPICS.forEach((t) => {
+      const opt = document.createElement("option");
+      opt.value = t.id;
+      opt.textContent = `Topic ${String(t.id).padStart(2, "0")}: ${t.title}`;
+      topicSelect.appendChild(opt);
+    });
+
+    topicSelect.addEventListener("change", (e) => {
+      this.loadListeningTopic(parseInt(e.target.value, 10));
+    });
+
+    document.querySelectorAll("#listening-level-selector .skill-level-btn").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        document.querySelectorAll("#listening-level-selector .skill-level-btn").forEach((b) => b.classList.remove("is-active"));
+        btn.classList.add("is-active");
+        this.currentListeningLevel = btn.getAttribute("data-level") || "A1";
+        this.loadListeningTopic(this.currentListeningTopicId || 1);
+      });
+    });
+
+    document.querySelectorAll(".listening-speed-group .speed-chip-btn").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        document.querySelectorAll(".listening-speed-group .speed-chip-btn").forEach((b) => b.classList.remove("is-active"));
+        btn.classList.add("is-active");
+        this.listeningSpeed = parseFloat(btn.getAttribute("data-speed")) || 1.0;
+        if (this.isListeningPlaying) {
+          this.pauseListening();
+          this.playListening();
+        }
+      });
+    });
+
+    const btnPlay = document.getElementById("btn-listening-play");
+    if (btnPlay) {
+      btnPlay.addEventListener("click", () => {
+        if (this.isListeningPlaying) {
+          this.pauseListening();
+        } else {
+          this.playListening();
+        }
+      });
+    }
+
+    this.currentListeningTopicId = 1;
+    this.currentListeningLevel = "A1";
+    this.listeningSpeed = 1.0;
+    this.isListeningPlaying = false;
+    this.currentSentenceIndex = 0;
+  },
+
+  openListeningModal(topicId = 1) {
+    const modal = document.getElementById("modal-listening");
+    if (!modal) return;
+    this.currentListeningTopicId = topicId;
+    const select = document.getElementById("listening-topic-select");
+    if (select) select.value = String(topicId);
+    this.loadListeningTopic(topicId);
+    modal.classList.add("is-open");
+    modal.setAttribute("aria-hidden", "false");
+  },
+
+  closeListeningModal() {
+    const modal = document.getElementById("modal-listening");
+    if (!modal) return;
+    this.pauseListening();
+    modal.classList.remove("is-open");
+    modal.setAttribute("aria-hidden", "true");
+  },
+
+  loadListeningTopic(topicId) {
+    const topic = getTopicById(topicId) || TOPICS[0];
+    this.currentListeningTopicId = topic.id;
+    this.pauseListening();
+
+    const level = this.currentListeningLevel || topic.defaultLevel || "A1";
+    const text = (topic.levels && topic.levels[level]) || topic.levels.A1 || "";
+
+    const sentences = text.match(/[^.!?]+[.!?]+(\s|$)|[^.!?]+$/g) || [text];
+    this.listeningSentences = sentences.map((s) => s.trim()).filter(Boolean);
+    this.currentSentenceIndex = 0;
+
+    const transcriptEl = document.getElementById("listening-transcript-display");
+    if (transcriptEl) {
+      transcriptEl.innerHTML = this.listeningSentences
+        .map((s, idx) => `<span class="spoken-sentence" id="sentence-${idx}">${escapeHtml(s)} </span>`)
+        .join("");
+    }
+
+    const qListEl = document.getElementById("listening-questions-list");
+    if (qListEl) {
+      qListEl.innerHTML = "";
+      topic.questions.forEach((q, idx) => {
+        const item = document.createElement("div");
+        item.className = "skill-question-item";
+        item.innerHTML = `<strong>Savol ${idx + 1}:</strong> ${escapeHtml(q)}`;
+        qListEl.appendChild(item);
+      });
+    }
+  },
+
+  playListening() {
+    if (!("speechSynthesis" in window)) {
+      alert("Kechirasiz, brauzeringizda nutq sintezi (Text-to-Speech) mavjud emas.");
+      return;
+    }
+    window.speechSynthesis.cancel();
+
+    if (!this.listeningSentences || this.listeningSentences.length === 0) return;
+    this.isListeningPlaying = true;
+    const playText = document.getElementById("listening-play-text");
+    const playIcon = document.getElementById("listening-play-icon");
+    if (playText) playText.textContent = "To'xtatish";
+    if (playIcon) playIcon.textContent = "⏸";
+
+    const speakNext = (index) => {
+      if (!this.isListeningPlaying || index >= this.listeningSentences.length) {
+        this.pauseListening();
+        this.currentSentenceIndex = 0;
+        return;
+      }
+      this.currentSentenceIndex = index;
+      document.querySelectorAll(".spoken-sentence").forEach((el) => el.classList.remove("is-active"));
+      const activeEl = document.getElementById(`sentence-${index}`);
+      if (activeEl) {
+        activeEl.classList.add("is-active");
+        activeEl.scrollIntoView({ behavior: "smooth", block: "nearest" });
+      }
+
+      const utt = new SpeechSynthesisUtterance(this.listeningSentences[index]);
+      utt.lang = "en-US";
+      utt.rate = this.listeningSpeed || 1.0;
+      utt.onend = () => {
+        if (this.isListeningPlaying) {
+          setTimeout(() => speakNext(index + 1), 220);
+        }
+      };
+      utt.onerror = () => {
+        this.pauseListening();
+      };
+      window.speechSynthesis.speak(utt);
+    };
+
+    speakNext(this.currentSentenceIndex || 0);
+  },
+
+  pauseListening() {
+    this.isListeningPlaying = false;
+    if ("speechSynthesis" in window) {
+      window.speechSynthesis.cancel();
+    }
+    const playText = document.getElementById("listening-play-text");
+    const playIcon = document.getElementById("listening-play-icon");
+    if (playText) playText.textContent = "Tinglash";
+    if (playIcon) playIcon.textContent = "▶";
+    document.querySelectorAll(".spoken-sentence").forEach((el) => el.classList.remove("is-active"));
+  },
+
+  /* --------------------------------------------------------------------------
+     READING PRACTICE MODULE
+     -------------------------------------------------------------------------- */
+
+  initReadingModule() {
+    const topicSelect = document.getElementById("reading-topic-select");
+    if (!topicSelect) return;
+    topicSelect.innerHTML = "";
+    TOPICS.forEach((t) => {
+      const opt = document.createElement("option");
+      opt.value = t.id;
+      opt.textContent = `Topic ${String(t.id).padStart(2, "0")}: ${t.title}`;
+      topicSelect.appendChild(opt);
+    });
+
+    topicSelect.addEventListener("change", (e) => {
+      this.loadReadingTopic(parseInt(e.target.value, 10));
+    });
+
+    document.querySelectorAll("#reading-level-selector .skill-level-btn").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        document.querySelectorAll("#reading-level-selector .skill-level-btn").forEach((b) => b.classList.remove("is-active"));
+        btn.classList.add("is-active");
+        this.currentReadingLevel = btn.getAttribute("data-level") || "A1";
+        this.loadReadingTopic(this.currentReadingTopicId || 1);
+      });
+    });
+
+    this.currentReadingTopicId = 1;
+    this.currentReadingLevel = "A1";
+  },
+
+  openReadingModal(topicId = 1) {
+    const modal = document.getElementById("modal-reading");
+    if (!modal) return;
+    this.currentReadingTopicId = topicId;
+    const select = document.getElementById("reading-topic-select");
+    if (select) select.value = String(topicId);
+    this.loadReadingTopic(topicId);
+    modal.classList.add("is-open");
+    modal.setAttribute("aria-hidden", "false");
+  },
+
+  closeReadingModal() {
+    const modal = document.getElementById("modal-reading");
+    if (!modal) return;
+    if ("speechSynthesis" in window) window.speechSynthesis.cancel();
+    modal.classList.remove("is-open");
+    modal.setAttribute("aria-hidden", "true");
+  },
+
+  loadReadingTopic(topicId) {
+    const topic = getTopicById(topicId) || TOPICS[0];
+    this.currentReadingTopicId = topic.id;
+
+    const level = this.currentReadingLevel || topic.defaultLevel || "A1";
+    const text = (topic.levels && topic.levels[level]) || topic.levels.A1 || "";
+
+    const display = document.getElementById("reading-passage-display");
+    if (display) {
+      display.innerHTML = "";
+      const tokens = text.split(/(\s+)/);
+      tokens.forEach((tok) => {
+        if (/^\s+$/.test(tok)) {
+          display.appendChild(document.createTextNode(tok));
+        } else {
+          const cleanWord = tok.replace(/[^a-zA-Z']/g, "");
+          const span = document.createElement("span");
+          span.className = "reading-word";
+          span.textContent = tok;
+          span.title = "Talaffuzini eshitish uchun bosing";
+          span.addEventListener("click", () => {
+            if ("speechSynthesis" in window && cleanWord) {
+              window.speechSynthesis.cancel();
+              const utt = new SpeechSynthesisUtterance(cleanWord);
+              utt.lang = "en-US";
+              utt.rate = 0.9;
+              window.speechSynthesis.speak(utt);
+            }
+          });
+          display.appendChild(span);
+        }
+      });
+    }
+
+    const qListEl = document.getElementById("reading-questions-list");
+    if (qListEl) {
+      qListEl.innerHTML = "";
+      topic.questions.forEach((q, idx) => {
+        const item = document.createElement("div");
+        item.className = "skill-question-item";
+        item.innerHTML = `<strong>Savol ${idx + 1}:</strong> ${escapeHtml(q)}`;
+        qListEl.appendChild(item);
+      });
+    }
   },
 
   updateRecordingsBadge() {
@@ -2416,33 +2628,42 @@ const UIController = {
       });
     });
 
-    // Feature Mode Cards (Speaking & Writing)
-    const cardStartSpeaking = document.getElementById("card-start-speaking");
-    if (cardStartSpeaking) {
-      cardStartSpeaking.addEventListener("click", () => {
-        this.applyMode("speaking");
-        this.openSetupScreen(AppState.selectedTopicId || 1);
-      });
-      cardStartSpeaking.addEventListener("keydown", (e) => {
-        if (e.key === "Enter" || e.key === " ") {
-          e.preventDefault();
-          this.applyMode("speaking");
-          this.openSetupScreen(AppState.selectedTopicId || 1);
-        }
-      });
-    }
-
+    // Secondary Skill Cards (Writing, Listening, Reading)
     const cardStartWriting = document.getElementById("card-start-writing");
     if (cardStartWriting) {
       cardStartWriting.addEventListener("click", () => {
-        this.applyMode("writing");
         this.openWritingScreen(AppState.selectedTopicId || 1);
       });
       cardStartWriting.addEventListener("keydown", (e) => {
         if (e.key === "Enter" || e.key === " ") {
           e.preventDefault();
-          this.applyMode("writing");
           this.openWritingScreen(AppState.selectedTopicId || 1);
+        }
+      });
+    }
+
+    const cardStartListening = document.getElementById("card-start-listening");
+    if (cardStartListening) {
+      cardStartListening.addEventListener("click", () => {
+        this.openListeningModal(AppState.selectedTopicId || 1);
+      });
+      cardStartListening.addEventListener("keydown", (e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          this.openListeningModal(AppState.selectedTopicId || 1);
+        }
+      });
+    }
+
+    const cardStartReading = document.getElementById("card-start-reading");
+    if (cardStartReading) {
+      cardStartReading.addEventListener("click", () => {
+        this.openReadingModal(AppState.selectedTopicId || 1);
+      });
+      cardStartReading.addEventListener("keydown", (e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          this.openReadingModal(AppState.selectedTopicId || 1);
         }
       });
     }
@@ -2640,26 +2861,8 @@ const UIController = {
     const dockPath = document.getElementById("dock-btn-path");
     if (dockPath) {
       dockPath.addEventListener("click", () => {
-        this.renderLearningPath();
-        this.renderTopicsList();
+        this.renderSpeakingCardTopics();
         this.switchScreen("topics");
-        this.applyViewMode("path");
-      });
-    }
-
-    const dockSpeaking = document.getElementById("dock-btn-speaking");
-    if (dockSpeaking) {
-      dockSpeaking.addEventListener("click", () => {
-        this.applyMode("speaking");
-        this.openSetupScreen(AppState.selectedTopicId || 1);
-      });
-    }
-
-    const dockWriting = document.getElementById("dock-btn-writing");
-    if (dockWriting) {
-      dockWriting.addEventListener("click", () => {
-        this.applyMode("writing");
-        this.openWritingScreen(AppState.selectedTopicId || 1);
       });
     }
 
@@ -2697,6 +2900,38 @@ const UIController = {
       modalBackdrop.addEventListener("click", (e) => {
         if (e.target === modalBackdrop) {
           this.closeRecordingsModal();
+        }
+      });
+    }
+
+    // Listening Modal Events
+    const btnCloseListening = document.getElementById("btn-close-listening-modal");
+    if (btnCloseListening) {
+      btnCloseListening.addEventListener("click", () => {
+        this.closeListeningModal();
+      });
+    }
+    const modalListeningBackdrop = document.getElementById("modal-listening");
+    if (modalListeningBackdrop) {
+      modalListeningBackdrop.addEventListener("click", (e) => {
+        if (e.target === modalListeningBackdrop) {
+          this.closeListeningModal();
+        }
+      });
+    }
+
+    // Reading Modal Events
+    const btnCloseReading = document.getElementById("btn-close-reading-modal");
+    if (btnCloseReading) {
+      btnCloseReading.addEventListener("click", () => {
+        this.closeReadingModal();
+      });
+    }
+    const modalReadingBackdrop = document.getElementById("modal-reading");
+    if (modalReadingBackdrop) {
+      modalReadingBackdrop.addEventListener("click", (e) => {
+        if (e.target === modalReadingBackdrop) {
+          this.closeReadingModal();
         }
       });
     }

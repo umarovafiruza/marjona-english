@@ -361,7 +361,8 @@ textarea {
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
-  margin-top: 0.25rem;
+  margin-top: 1.1rem;
+  padding-bottom: 0.35rem;
 }
 
 .greeting-text-wrap {
@@ -444,261 +445,593 @@ textarea {
 }
 
 /* --------------------------------------------------------------------------
-   5. DEDICATED MODE CARDS (SPEAKING & WRITING)
+   5. SPEAKING HUB CARD (WITH 10 TOPICS INSIDE)
    -------------------------------------------------------------------------- */
 
-.modes-grid-cards {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 0.85rem;
-  margin-top: 0.25rem;
-  margin-bottom: 0.4rem;
+.speaking-hub-card {
+  background: var(--bg-surface);
+  border: 2px solid rgba(34, 197, 94, 0.4);
+  border-radius: var(--radius-xl);
+  padding: 1.4rem;
+  margin-top: 0.5rem;
+  box-shadow: 0 8px 24px rgba(34, 197, 94, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }
 
-.mode-feature-card {
+[data-theme="dark"] .speaking-hub-card {
+  border-color: rgba(74, 222, 128, 0.35);
+  background: linear-gradient(160deg, var(--bg-surface) 70%, rgba(74, 222, 128, 0.08) 100%);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+}
+
+.speaking-hub-top-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.35rem;
+}
+
+.speaking-hub-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  background: rgba(34, 197, 94, 0.15);
+  color: #16A34A;
+  padding: 0.3rem 0.75rem;
+  border-radius: var(--radius-pill);
+  font-size: 0.76rem;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+}
+
+[data-theme="dark"] .speaking-hub-badge {
+  background: rgba(74, 222, 128, 0.18);
+  color: #4ADE80;
+}
+
+.speaking-hub-count {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--text-muted);
+}
+
+.speaking-hub-title {
+  font-size: 1.25rem;
+  font-weight: 900;
+  color: var(--text-primary);
+  margin-bottom: 0.25rem;
+}
+
+.speaking-hub-desc {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  line-height: 1.45;
+}
+
+/* 10 Topics List inside Speaking Card */
+.speaking-topics-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  max-height: 380px;
+  overflow-y: auto;
+  padding-right: 4px;
+}
+
+.speaking-topic-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.75rem 0.95rem;
+  background: rgba(0, 0, 0, 0.02);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  transition: all 0.18s ease;
+  cursor: pointer;
+}
+
+[data-theme="dark"] .speaking-topic-row {
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.speaking-topic-row:hover {
+  background: rgba(34, 197, 94, 0.08);
+  border-color: var(--accent-green);
+  transform: translateX(3px);
+}
+
+.speaking-topic-left {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  min-width: 0;
+  flex: 1;
+}
+
+.speaking-topic-num {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--bg-surface);
+  border: 1.5px solid var(--border-color);
+  color: var(--text-secondary);
+  font-size: 0.76rem;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.speaking-topic-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  min-width: 0;
+}
+
+.speaking-topic-title {
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.speaking-topic-tag {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: #16A34A;
+}
+
+[data-theme="dark"] .speaking-topic-tag {
+  color: #4ADE80;
+}
+
+.speaking-topic-start-btn {
+  padding: 0.42rem 0.85rem;
+  background: var(--primary-green);
+  color: #FFFFFF;
+  border: none;
+  border-radius: var(--radius-pill);
+  font-size: 0.78rem;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  flex-shrink: 0;
+  cursor: pointer;
+  transition: transform 0.15s ease, background 0.15s ease;
+}
+
+.speaking-topic-start-btn:hover {
+  background: var(--primary-green-hover);
+  transform: scale(1.05);
+}
+
+/* --------------------------------------------------------------------------
+   6. SECONDARY SKILLS SECTION (WRITING, LISTENING, READING)
+   -------------------------------------------------------------------------- */
+
+.skills-section-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-top: 1.4rem;
+  margin-bottom: 0.65rem;
+  padding: 0 0.2rem;
+}
+
+.skills-section-title {
+  font-size: 1.05rem;
+  font-weight: 900;
+  color: var(--text-primary);
+  letter-spacing: -0.01em;
+}
+
+.skills-section-sub {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.secondary-skills-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.85rem;
+  margin-bottom: 1.5rem;
+}
+
+.skill-action-card {
   position: relative;
   background: var(--bg-surface);
   border: 2px solid var(--border-color);
   border-radius: var(--radius-lg);
-  padding: 1.2rem 1.15rem;
+  padding: 1.15rem 1.05rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   cursor: pointer;
   transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.2s ease, border-color 0.2s ease;
   box-shadow: 0 4px 14px rgba(0, 0, 0, 0.04);
-  user-select: none;
-  overflow: hidden;
 }
 
-.mode-feature-card:hover {
+.skill-action-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 12px 26px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.08);
 }
 
-.mode-feature-card:active {
-  transform: translateY(-1px);
-}
-
-/* Speaking card */
-.mode-feature-card.is-speaking-card {
-  border-color: rgba(34, 197, 94, 0.35);
-  background: linear-gradient(145deg, var(--bg-surface) 60%, rgba(34, 197, 94, 0.07) 100%);
-}
-
-.mode-feature-card.is-speaking-card:hover,
-.mode-feature-card.is-speaking-card.is-active-mode {
-  border-color: var(--accent-green);
-  box-shadow: 0 12px 28px rgba(34, 197, 94, 0.2);
-}
-
-/* Writing card */
-.mode-feature-card.is-writing-card {
+/* Writing Theme */
+.skill-action-card.is-writing {
   border-color: rgba(99, 102, 241, 0.35);
-  background: linear-gradient(145deg, var(--bg-surface) 60%, rgba(99, 102, 241, 0.07) 100%);
 }
-
-.mode-feature-card.is-writing-card:hover,
-.mode-feature-card.is-writing-card.is-active-mode {
+.skill-action-card.is-writing:hover {
   border-color: #6366F1;
-  box-shadow: 0 12px 28px rgba(99, 102, 241, 0.2);
+  box-shadow: 0 10px 24px rgba(99, 102, 241, 0.18);
 }
-
-[data-theme="dark"] .mode-feature-card.is-speaking-card {
-  border-color: rgba(74, 222, 128, 0.3);
-  background: linear-gradient(145deg, var(--bg-surface) 60%, rgba(74, 222, 128, 0.1) 100%);
-}
-
-[data-theme="dark"] .mode-feature-card.is-writing-card {
-  border-color: rgba(129, 140, 248, 0.3);
-  background: linear-gradient(145deg, var(--bg-surface) 60%, rgba(129, 140, 248, 0.1) 100%);
-}
-
-.mode-card-top {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 0.85rem;
-}
-
-.mode-card-badge {
-  display: inline-flex;
-  align-items: center;
-  padding: 0.28rem 0.65rem;
-  border-radius: var(--radius-pill);
-  font-size: 0.72rem;
-  font-weight: 800;
-  letter-spacing: 0.02em;
-}
-
-.badge-speaking {
-  background: rgba(34, 197, 94, 0.14);
-  color: #16A34A;
-}
-
-[data-theme="dark"] .badge-speaking {
-  background: rgba(74, 222, 128, 0.18);
-  color: #4ADE80;
-}
-
 .badge-writing {
   background: rgba(99, 102, 241, 0.14);
   color: #4F46E5;
 }
-
 [data-theme="dark"] .badge-writing {
   background: rgba(129, 140, 248, 0.2);
   color: #A5B4FC;
 }
+.skill-card-icon.is-writing {
+  background: linear-gradient(135deg, #818CF8 0%, #4F46E5 100%);
+  color: #FFFFFF;
+}
 
-.mode-card-icon-bubble {
-  width: 42px;
-  height: 42px;
+/* Listening Theme */
+.skill-action-card.is-listening {
+  border-color: rgba(14, 165, 233, 0.35);
+}
+.skill-action-card.is-listening:hover {
+  border-color: #0EA5E9;
+  box-shadow: 0 10px 24px rgba(14, 165, 233, 0.18);
+}
+.badge-listening {
+  background: rgba(14, 165, 233, 0.14);
+  color: #0284C7;
+}
+[data-theme="dark"] .badge-listening {
+  background: rgba(56, 189, 248, 0.2);
+  color: #7DD3FC;
+}
+.skill-card-icon.is-listening {
+  background: linear-gradient(135deg, #38BDF8 0%, #0284C7 100%);
+  color: #FFFFFF;
+}
+
+/* Reading Theme */
+.skill-action-card.is-reading {
+  border-color: rgba(245, 158, 11, 0.35);
+}
+.skill-action-card.is-reading:hover {
+  border-color: #F59E0B;
+  box-shadow: 0 10px 24px rgba(245, 158, 11, 0.18);
+}
+.badge-reading {
+  background: rgba(245, 158, 11, 0.14);
+  color: #D97706;
+}
+[data-theme="dark"] .badge-reading {
+  background: rgba(251, 191, 36, 0.2);
+  color: #FCD34D;
+}
+.skill-card-icon.is-reading {
+  background: linear-gradient(135deg, #FBBF24 0%, #D97706 100%);
+  color: #FFFFFF;
+}
+
+.skill-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.75rem;
+}
+
+.skill-card-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 0.6rem;
+  border-radius: var(--radius-pill);
+  font-size: 0.72rem;
+  font-weight: 800;
+}
+
+.skill-card-icon {
+  width: 38px;
+  height: 38px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: transform 0.2s ease;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
 }
 
-.mode-feature-card:hover .mode-card-icon-bubble {
-  transform: scale(1.12);
+.skill-card-icon svg {
+  width: 19px;
+  height: 19px;
 }
 
-.mode-card-icon-bubble.is-speaking {
-  background: linear-gradient(135deg, #4ADE80 0%, #16A34A 100%);
-  color: #FFFFFF;
-  box-shadow: 0 4px 10px rgba(34, 197, 94, 0.3);
-}
-
-.mode-card-icon-bubble.is-writing {
-  background: linear-gradient(135deg, #818CF8 0%, #4F46E5 100%);
-  color: #FFFFFF;
-  box-shadow: 0 4px 10px rgba(99, 102, 241, 0.3);
-}
-
-.mode-card-icon-bubble svg {
-  width: 20px;
-  height: 20px;
-}
-
-.mode-card-title {
-  font-size: 1.12rem;
+.skill-card-title {
+  font-size: 1.05rem;
   font-weight: 800;
   color: var(--text-primary);
-  margin-bottom: 0.35rem;
+  margin-bottom: 0.3rem;
 }
 
-.mode-card-desc {
-  font-size: 0.78rem;
+.skill-card-desc {
+  font-size: 0.76rem;
   color: var(--text-muted);
   line-height: 1.45;
-  margin-bottom: 1rem;
+  margin-bottom: 0.9rem;
   flex: 1;
 }
 
-.mode-card-cta {
+.skill-card-cta {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  font-size: 0.82rem;
+  font-size: 0.8rem;
   font-weight: 700;
-  padding-top: 0.65rem;
+  padding-top: 0.6rem;
   border-top: 1px solid var(--border-subtle);
-  transition: color 0.15s ease;
+  color: var(--text-primary);
 }
 
-.is-speaking-card .mode-card-cta {
-  color: #16A34A;
-}
-
-[data-theme="dark"] .is-speaking-card .mode-card-cta {
-  color: #4ADE80;
-}
-
-.is-writing-card .mode-card-cta {
-  color: #4F46E5;
-}
-
-[data-theme="dark"] .is-writing-card .mode-card-cta {
-  color: #A5B4FC;
-}
-
-.mode-feature-card:hover .cta-arrow {
+.skill-action-card:hover .cta-arrow {
   transform: translateX(4px);
 }
 
-.cta-arrow {
-  transition: transform 0.2s ease;
-}
-
-@media (max-width: 520px) {
-  .modes-grid-cards {
+@media (max-width: 680px) {
+  .secondary-skills-grid {
     grid-template-columns: 1fr;
     gap: 0.75rem;
   }
 }
 
 /* --------------------------------------------------------------------------
-   6. MODE & VIEW SWITCHER BARS
+   7. SKILL MODALS (LISTENING & READING)
    -------------------------------------------------------------------------- */
 
-.mode-switcher-container {
+.modal-card-skill {
+  max-width: 540px;
+  max-height: 85vh;
+  overflow-y: auto;
+  border-radius: var(--radius-xl);
+  padding: 1.4rem;
+}
+
+.skill-modal-body {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 0.5rem;
+}
+
+.skill-picker-row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.skill-picker-label {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.skill-modal-select {
+  width: 100%;
+  padding: 0.65rem 0.85rem;
+  border-radius: var(--radius-md);
+  border: 1.5px solid var(--border-color);
+  background: var(--bg-card);
+  color: var(--text-primary);
+  font-size: 0.9rem;
+  font-weight: 600;
+  outline: none;
+}
+
+.skill-level-row {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.skill-level-btn {
+  flex: 1;
+  padding: 0.45rem 0.65rem;
+  border-radius: var(--radius-pill);
+  border: 1.5px solid var(--border-color);
+  background: var(--bg-surface);
+  color: var(--text-muted);
+  font-size: 0.78rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.skill-level-btn.is-active {
+  border-color: var(--accent-green);
+  background: rgba(34, 197, 94, 0.12);
+  color: #16A34A;
+}
+
+[data-theme="dark"] .skill-level-btn.is-active {
+  color: #4ADE80;
+}
+
+/* Listening Audio Box */
+.listening-player-box {
+  background: rgba(0, 0, 0, 0.02);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+[data-theme="dark"] .listening-player-box {
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.listening-player-controls {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 0.6rem;
-  margin-top: 0.25rem;
+  flex-wrap: wrap;
+  gap: 0.5rem;
 }
 
-.mode-switcher {
-  display: flex;
-  background: var(--bg-surface);
-  padding: 4px;
-  border-radius: var(--radius-pill);
-  border: 1px solid var(--border-color);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
-  flex: 1;
-}
-
-.mode-tab-btn {
-  flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.45rem;
-  padding: 0.55rem 0.85rem;
-  border-radius: var(--radius-pill);
-  font-size: 0.85rem;
-  font-weight: 700;
-  color: var(--text-muted);
-  transition: all var(--transition-speed);
-}
-
-.mode-tab-btn.is-active {
-  background: var(--primary-green);
-  color: #FFFFFF;
-  box-shadow: 0 2px 8px rgba(34, 197, 94, 0.35);
-}
-
-.view-toggle-btn {
+.btn-audio-action {
   display: inline-flex;
   align-items: center;
-  gap: 0.35rem;
-  padding: 0.55rem 0.85rem;
-  background: var(--bg-surface);
-  border: 1px solid var(--border-color);
+  gap: 0.45rem;
+  padding: 0.6rem 1.2rem;
   border-radius: var(--radius-pill);
-  font-size: 0.82rem;
-  font-weight: 700;
-  color: var(--text-secondary);
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
-  transition: all var(--transition-speed);
+  background: linear-gradient(135deg, #0284C7 0%, #0369A1 100%);
+  color: #FFFFFF;
+  border: none;
+  font-size: 0.88rem;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(2, 132, 199, 0.35);
+  transition: transform 0.15s ease;
 }
 
-.view-toggle-btn:hover {
-  border-color: var(--border-hover);
+.btn-audio-action:hover {
+  transform: translateY(-2px);
+}
+
+.listening-speed-group {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.speed-label {
+  font-size: 0.74rem;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.speed-chip-btn {
+  padding: 0.25rem 0.55rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-color);
+  background: var(--bg-surface);
+  color: var(--text-muted);
+  font-size: 0.72rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.speed-chip-btn.is-active {
+  background: #0284C7;
+  color: #FFFFFF;
+  border-color: #0284C7;
+}
+
+.listening-transcript {
+  font-size: 0.95rem;
+  line-height: 1.65;
+  color: var(--text-secondary);
+  padding: 0.75rem;
+  background: var(--bg-surface);
+  border-radius: var(--radius-sm);
+  max-height: 180px;
+  overflow-y: auto;
+}
+
+.spoken-sentence {
+  transition: background 0.2s ease, color 0.2s ease;
+  border-radius: 4px;
+  padding: 2px 4px;
+}
+
+.spoken-sentence.is-active {
+  background: rgba(34, 197, 94, 0.25);
   color: var(--text-primary);
+  font-weight: 600;
+}
+
+/* Reading Passage Box */
+.reading-passage-box {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.reading-passage-hint {
+  font-size: 0.74rem;
+  font-weight: 600;
+  color: var(--primary-green);
+}
+
+.interactive-reading-text {
+  font-size: 1rem;
+  line-height: 1.75;
+  color: var(--text-primary);
+  max-height: 220px;
+  overflow-y: auto;
+}
+
+.reading-word {
+  cursor: pointer;
+  padding: 1px 3px;
+  border-radius: 4px;
+  transition: all 0.15s ease;
+}
+
+.reading-word:hover {
+  background: rgba(245, 158, 11, 0.25);
+  color: #D97706;
+}
+
+/* Comprehension Questions */
+.skill-questions-box {
+  border-top: 1px solid var(--border-subtle);
+  padding-top: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.skill-questions-heading {
+  font-size: 0.86rem;
+  font-weight: 800;
+  color: var(--text-primary);
+}
+
+.skill-questions-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.skill-question-item {
+  padding: 0.65rem 0.85rem;
+  background: rgba(0, 0, 0, 0.02);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+  line-height: 1.45;
+}
+
+[data-theme="dark"] .skill-question-item {
+  background: rgba(255, 255, 255, 0.03);
 }
 
 /* --------------------------------------------------------------------------
@@ -1052,7 +1385,7 @@ textarea {
 }
 
 /* --------------------------------------------------------------------------
-   10. SETUP SCREEN
+   8. SETUP SCREEN
    -------------------------------------------------------------------------- */
 
 .setup-inner {

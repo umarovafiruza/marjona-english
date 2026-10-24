@@ -19,41 +19,6 @@
     <section id="screen-topics" class="screen is-visible is-active" aria-labelledby="brand-heading">
       <div class="screen-inner">
         
-        <!-- App Header Bar -->
-        <header class="site-header">
-          <div class="header-left">
-            <button type="button" class="icon-circle-btn" id="header-menu-btn" title="Sozlamalar va Profil" aria-label="Sozlamalar va Profil">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18">
-                <circle cx="12" cy="12" r="3"/>
-                <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
-              </svg>
-            </button>
-          </div>
-
-          <div class="header-center-brand">
-            <span class="header-brand-title">Speakline</span>
-          </div>
-
-          <div class="header-right">
-            <button type="button" class="theme-toggle-btn" title="Mavzuni almashtirish (Yorug' / To'q)" aria-label="Mavzuni almashtirish">
-              <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18">
-                <circle cx="12" cy="12" r="5"/>
-                <line x1="12" y1="1" x2="12" y2="3"/>
-                <line x1="12" y1="21" x2="12" y2="23"/>
-                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
-                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
-                <line x1="1" y1="12" x2="3" y2="12"/>
-                <line x1="21" y1="12" x2="23" y2="12"/>
-                <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
-                <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
-              </svg>
-              <svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18">
-                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
-              </svg>
-            </button>
-          </div>
-        </header>
-
         <!-- Greeting Card & Mascot Avatar -->
         <div class="greeting-card">
           <div class="greeting-text-wrap">
@@ -89,101 +54,88 @@
           </div>
         </div>
 
-        <!-- Dedicated Mode Cards: Speaking & Writing -->
-        <div class="modes-grid-cards">
-          <!-- Speaking Card -->
-          <div class="mode-feature-card is-speaking-card" id="card-start-speaking" role="button" tabindex="0" title="Speaking mashg'ulotini boshlash">
-            <div class="mode-card-top">
-              <span class="mode-card-badge badge-speaking">🎙️ 10 ta Mavzu</span>
-              <div class="mode-card-icon-bubble is-speaking">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3">
-                  <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" fill="currentColor"/>
-                  <path d="M15.54 8.46a5 5 0 0 1 0 7.07"/>
-                  <path d="M19.07 4.93a10 10 0 0 1 0 14.14"/>
-                </svg>
-              </div>
+        <!-- 1. Speaking Card (Prominent - Includes all 10 topics inside) -->
+        <div class="speaking-hub-card" id="card-speaking-hub">
+          <div class="speaking-hub-header">
+            <div class="speaking-hub-top-row">
+              <span class="speaking-hub-badge">🎙️ Speaking Practice</span>
+              <span class="speaking-hub-count">10 ta Mavzu</span>
             </div>
-            <h2 class="mode-card-title">Speaking Practice</h2>
-            <p class="mode-card-desc">O'qish tezligini (WPM) sozlang va teleprompter bilan inglizcha ravon gapiring.</p>
-            <div class="mode-card-cta">
-              <span>Gapirishni boshlash</span>
-              <span class="cta-arrow">➔</span>
-            </div>
+            <h2 class="speaking-hub-title">Speaking bo'limi</h2>
+            <p class="speaking-hub-desc">Quyidagi 10 ta mavzudan birini tanlang — teleprompter tezligini (WPM) boshqaring, ovoz chiqarib gapiring va o'z ovozingizni diktafonda saqlang.</p>
           </div>
 
+          <!-- 10 Topics List right inside Speaking Card -->
+          <div class="speaking-topics-container" id="speaking-card-topics-list">
+            <!-- Dynamically populated by JS: 10 topics -->
+          </div>
+        </div>
+
+        <!-- Section Header for Secondary Skills -->
+        <div class="skills-section-header">
+          <h3 class="skills-section-title">Boshqa ko'nikmalar</h3>
+          <span class="skills-section-sub">Writing · Listening · Reading</span>
+        </div>
+
+        <!-- 3 Secondary Skill Cards: Writing, Listening, Reading -->
+        <div class="secondary-skills-grid">
           <!-- Writing Card -->
-          <div class="mode-feature-card is-writing-card" id="card-start-writing" role="button" tabindex="0" title="Writing insho yozishni boshlash">
-            <div class="mode-card-top">
-              <span class="mode-card-badge badge-writing">✍️ 50-100 So'z</span>
-              <div class="mode-card-icon-bubble is-writing">
+          <div class="skill-action-card is-writing" id="card-start-writing" role="button" tabindex="0" title="Writing insho yozishni boshlash">
+            <div class="skill-card-top">
+              <span class="skill-card-badge badge-writing">✍️ Writing</span>
+              <div class="skill-card-icon is-writing">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3">
                   <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
                   <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
                 </svg>
               </div>
             </div>
-            <h2 class="mode-card-title">Writing Studio</h2>
-            <p class="mode-card-desc">Berilgan mavzuda insho yozing, kalit so'zlarni ishlatib, so'z boyligingizni oshiring.</p>
-            <div class="mode-card-cta">
-              <span>Yozishni boshlash</span>
+            <h3 class="skill-card-title">Writing Studio</h3>
+            <p class="skill-card-desc">Mavzuga doir 50-100 so'zli insho yozing, kalit so'zlarni ishlatib, yozma nutqni rivojlantiring.</p>
+            <div class="skill-card-cta">
+              <span>Insho yozish</span>
               <span class="cta-arrow">➔</span>
             </div>
           </div>
-        </div>
 
-        <!-- Mode & View Switcher Bar -->
-        <div class="mode-switcher-container">
-          <div class="mode-switcher" role="tablist" aria-label="Learning Mode">
-            <button type="button" class="mode-tab-btn is-active" data-mode="speaking" role="tab" aria-selected="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16">
-                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
-                <path d="M15.54 8.46a5 5 0 0 1 0 7.07"/>
-                <path d="M19.07 4.93a10 10 0 0 1 0 14.14"/>
-              </svg>
-              <span>Speaking</span>
-            </button>
-            <button type="button" class="mode-tab-btn" data-mode="writing" role="tab" aria-selected="false">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16">
-                <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
-                <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
-              </svg>
-              <span>Writing</span>
-            </button>
-          </div>
-
-          <button type="button" id="btn-toggle-view" class="view-toggle-btn" title="Toggle between Roadmap and Card List">
-            <span>📋 List</span>
-          </button>
-        </div>
-
-        <!-- 1A. LEARNING PATH VIEW (Winding Stepping Stones Map) -->
-        <div id="container-path-view" class="learning-path-container">
-          <div class="unit-banner-card">
-            <div class="unit-banner-left">
-              <div class="unit-dropdown-btn">
-                <span>A1 Beginner</span>
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="16" height="16">
-                  <polyline points="6 9 12 15 18 9"/>
+          <!-- Listening Card -->
+          <div class="skill-action-card is-listening" id="card-start-listening" role="button" tabindex="0" title="Listening tinglab tushunishni boshlash">
+            <div class="skill-card-top">
+              <span class="skill-card-badge badge-listening">🎧 Listening</span>
+              <div class="skill-card-icon is-listening">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3">
+                  <path d="M3 18v-6a9 9 0 0 1 18 0v6"/>
+                  <path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/>
                 </svg>
               </div>
-              <span class="unit-sub-label">Unit 1 · Getting Started</span>
             </div>
-            <div class="unit-notebook-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20">
-                <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1-2.5-2.5Z"/>
-                <path d="M6 6h10"/>
-                <path d="M6 10h10"/>
-              </svg>
+            <h3 class="skill-card-title">Listening Practice</h3>
+            <p class="skill-card-desc">Tabiiy audiolarni tinglang, tezlikni boshqaring va tinglab tushunish savollariga javob bering.</p>
+            <div class="skill-card-cta">
+              <span>Tinglashni boshlash</span>
+              <span class="cta-arrow">➔</span>
             </div>
           </div>
 
-          <!-- Stepping Stone Track with Nodes -->
-          <div id="path-winding-track" class="path-winding-track"></div>
-        </div>
-
-        <!-- 1B. STRUCTURED CARD LIST VIEW -->
-        <div id="container-list-view" style="display: none;">
-          <ol id="topic-list" class="topic-list" aria-label="Available topics list"></ol>
+          <!-- Reading Card -->
+          <div class="skill-action-card is-reading" id="card-start-reading" role="button" tabindex="0" title="Reading matn o'qishni boshlash">
+            <div class="skill-card-top">
+              <span class="skill-card-badge badge-reading">📖 Reading</span>
+              <div class="skill-card-icon is-reading">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3">
+                  <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1-2.5-2.5Z"/>
+                  <path d="M6 6h10"/>
+                  <path d="M6 10h10"/>
+                </svg>
+              </div>
+            </div>
+            <h3 class="skill-card-title">Reading Practice</h3>
+            <p class="skill-card-desc">Matnlarni o'qing, notanish so'zlarni bosib tarjimasini tinglang va savollarga javob bering.</p>
+            <div class="skill-card-cta">
+              <span>O'qishni boshlash</span>
+              <span class="cta-arrow">➔</span>
+            </div>
+          </div>
         </div>
 
       </div>
@@ -606,34 +558,115 @@
     </div>
 
     <!-- ======================================================================
+         6B. LISTENING PRACTICE MODAL
+         ====================================================================== -->
+    <div id="modal-listening" class="modal-backdrop" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="modal-listening-title">
+      <div class="modal-card modal-card-skill">
+        <div class="modal-header">
+          <div>
+            <h3 id="modal-listening-title" class="modal-title">🎧 Listening Practice</h3>
+            <p class="modal-sub">Mavzuni tinglang va tushunish savollariga javob bering</p>
+          </div>
+          <button type="button" id="btn-close-listening-modal" class="modal-close-btn" aria-label="Yopish">&times;</button>
+        </div>
+
+        <div class="skill-modal-body">
+          <!-- Topic Picker -->
+          <div class="skill-picker-row">
+            <label for="listening-topic-select" class="skill-picker-label">Mavzu:</label>
+            <select id="listening-topic-select" class="skill-modal-select"></select>
+          </div>
+
+          <!-- Level Selector -->
+          <div class="skill-level-row" id="listening-level-selector">
+            <button type="button" class="skill-level-btn is-active" data-level="A1">Level A1</button>
+            <button type="button" class="skill-level-btn" data-level="A2">Level A2</button>
+            <button type="button" class="skill-level-btn" data-level="B1">Level B1</button>
+          </div>
+
+          <!-- Audio Player Box -->
+          <div class="listening-player-box">
+            <div class="listening-player-controls">
+              <button type="button" id="btn-listening-play" class="btn-audio-action">
+                <span id="listening-play-icon">▶</span>
+                <span id="listening-play-text">Tinglash</span>
+              </button>
+              <div class="listening-speed-group">
+                <span class="speed-label">Tezlik:</span>
+                <button type="button" class="speed-chip-btn" data-speed="0.8">0.8x</button>
+                <button type="button" class="speed-chip-btn is-active" data-speed="1.0">1.0x</button>
+                <button type="button" class="speed-chip-btn" data-speed="1.2">1.2x</button>
+              </div>
+            </div>
+
+            <!-- Live Spoken Sentence Transcript -->
+            <div class="listening-transcript" id="listening-transcript-display"></div>
+          </div>
+
+          <!-- Comprehension Questions -->
+          <div class="skill-questions-box">
+            <h4 class="skill-questions-heading">❓ Tinglab tushunish savollari:</h4>
+            <div id="listening-questions-list" class="skill-questions-list"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ======================================================================
+         6C. READING PRACTICE MODAL
+         ====================================================================== -->
+    <div id="modal-reading" class="modal-backdrop" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="modal-reading-title">
+      <div class="modal-card modal-card-skill">
+        <div class="modal-header">
+          <div>
+            <h3 id="modal-reading-title" class="modal-title">📖 Reading Practice</h3>
+            <p class="modal-sub">Matnni o'qing, notanish so'zlarni bosib tarjimasini ko'ring</p>
+          </div>
+          <button type="button" id="btn-close-reading-modal" class="modal-close-btn" aria-label="Yopish">&times;</button>
+        </div>
+
+        <div class="skill-modal-body">
+          <!-- Topic Picker -->
+          <div class="skill-picker-row">
+            <label for="reading-topic-select" class="skill-picker-label">Mavzu:</label>
+            <select id="reading-topic-select" class="skill-modal-select"></select>
+          </div>
+
+          <!-- Level Selector -->
+          <div class="skill-level-row" id="reading-level-selector">
+            <button type="button" class="skill-level-btn is-active" data-level="A1">Level A1</button>
+            <button type="button" class="skill-level-btn" data-level="A2">Level A2</button>
+            <button type="button" class="skill-level-btn" data-level="B1">Level B1</button>
+          </div>
+
+          <!-- Interactive Reading Passage -->
+          <div class="reading-passage-box">
+            <div class="reading-passage-hint">💡 So'z ustiga bosing — talaffuzini eshitasiz!</div>
+            <div class="interactive-reading-text" id="reading-passage-display"></div>
+          </div>
+
+          <!-- Comprehension Questions -->
+          <div class="skill-questions-box">
+            <h4 class="skill-questions-heading">❓ Matn bo'yicha savollar:</h4>
+            <div id="reading-questions-list" class="skill-questions-list"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ======================================================================
          7. FLOATING BOTTOM NAVIGATION DOCK (DUOLINGO-STYLE)
          ====================================================================== -->
     <nav class="floating-bottom-dock" aria-label="Primary navigation">
-      <button type="button" id="dock-btn-path" class="dock-tab-btn is-active" title="Learning Path">
+      <button type="button" id="dock-btn-path" class="dock-tab-btn is-active" title="Asosiy">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3">
           <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
           <polyline points="9 22 9 12 15 12 15 22"/>
         </svg>
-        <span>Path</span>
+        <span>Asosiy</span>
       </button>
 
-      <button type="button" id="dock-btn-speaking" class="dock-tab-btn" title="Speaking Practice">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3">
-          <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
-          <path d="M15.54 8.46a5 5 0 0 1 0 7.07"/>
-        </svg>
-        <span>Speaking</span>
-      </button>
-
-      <button type="button" id="dock-btn-writing" class="dock-tab-btn" title="Writing Studio">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3">
-          <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
-          <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
-        </svg>
-        <span>Writing</span>
-      </button>
-
-      <button type="button" id="dock-btn-recordings" class="dock-tab-btn" title="Audio Recordings">
+      <button type="button" id="dock-btn-recordings" class="dock-tab-btn" title="Audio Yozuvlar">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3">
           <path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/>
           <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>

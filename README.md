@@ -15,8 +15,12 @@
   - Completed topics show vibrant green circles with checkmark `✔`.
   - Upcoming topics display theme icons (headphones, books, chests, dumbbells, airplanes, trophies).
 - **Cute Learning Buddy Mascot & Greeting:** Cheerful mascot avatar with real-time personalized user greeting ("Hey, [Name]!").
-- **Dedicated Speaking & Writing Cards:** Dual interactive feature cards for direct entry into Speaking Practice (teleprompter & voice recorder) and Writing Studio (guided essays & vocabulary badges).
-- **Floating Bottom Navigation Dock:** Sleek pill-shaped dock with tabs for **Path**, **Speaking**, **Writing**, **Audios**, and **Profile**.
+- **4 Core English Skills Hub:**
+  - 🎙️ **Speaking Practice:** Prominent card with all 10 CEFR topics listed directly inside for instant teleprompter access.
+  - ✍️ **Writing Studio:** Guided 50-100 word essay practice with real-time target vocabulary badges.
+  - 🎧 **Listening Practice:** Audio playback with adjustable speed, live spoken sentence highlighting, and comprehension questions.
+  - 📖 **Reading Practice:** Interactive graded passages with tap-to-pronounce words and comprehension questions.
+- **Floating Bottom Navigation Dock:** Minimal and focused navigation for **Asosiy (Path)**, **Audios**, and **Profile**.
 
 ---
 
