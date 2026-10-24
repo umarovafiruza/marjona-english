@@ -14,13 +14,8 @@
   - Active topic has a bouncing `"Start"` speech bubble tooltip!
   - Completed topics show vibrant green circles with checkmark `✔`.
   - Upcoming topics display theme icons (headphones, books, chests, dumbbells, airplanes, trophies).
-- **Gamified Stats Header:**
-  - 🔥 **Daily Streak:** Tracks consecutive practice days.
-  - 💎 **Gems / Crystals:** Earn gems as you advance.
-  - 🎯 **XP Counter:** Earn **+20 XP** with every completed speaking session or written essay!
-  - 🏆 **Silver League:** Displays current rank tier (e.g. Silver · Top 12%).
-- **Cute Learning Buddy Mascot:** Cheerful green leaf-eared mascot avatar cheering you on ("Hey, Champion! Let's keep your streak going!").
-- **Featured Hero Card:** Deep forest green card highlighting your current lesson with a smooth animated progress bar.
+- **Cute Learning Buddy Mascot & Greeting:** Cheerful mascot avatar with real-time personalized user greeting ("Hey, [Name]!").
+- **Dedicated Speaking & Writing Cards:** Dual interactive feature cards for direct entry into Speaking Practice (teleprompter & voice recorder) and Writing Studio (guided essays & vocabulary badges).
 - **Floating Bottom Navigation Dock:** Sleek pill-shaped dock with tabs for **Path**, **Speaking**, **Writing**, **Audios**, and **Profile**.
 
 ---

@@ -1784,6 +1784,15 @@ const UIController = {
       btn.setAttribute("aria-selected", isMatch ? "true" : "false");
     });
 
+    const cardSpeaking = document.getElementById("card-start-speaking");
+    if (cardSpeaking) {
+      cardSpeaking.classList.toggle("is-active-mode", mode === "speaking");
+    }
+    const cardWriting = document.getElementById("card-start-writing");
+    if (cardWriting) {
+      cardWriting.classList.toggle("is-active-mode", mode === "writing");
+    }
+
     this.renderLearningPath();
     this.renderTopicsList();
     this.updateGamifiedHeader();
@@ -2406,6 +2415,37 @@ const UIController = {
         this.applyMode(btn.getAttribute("data-mode"));
       });
     });
+
+    // Feature Mode Cards (Speaking & Writing)
+    const cardStartSpeaking = document.getElementById("card-start-speaking");
+    if (cardStartSpeaking) {
+      cardStartSpeaking.addEventListener("click", () => {
+        this.applyMode("speaking");
+        this.openSetupScreen(AppState.selectedTopicId || 1);
+      });
+      cardStartSpeaking.addEventListener("keydown", (e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          this.applyMode("speaking");
+          this.openSetupScreen(AppState.selectedTopicId || 1);
+        }
+      });
+    }
+
+    const cardStartWriting = document.getElementById("card-start-writing");
+    if (cardStartWriting) {
+      cardStartWriting.addEventListener("click", () => {
+        this.applyMode("writing");
+        this.openWritingScreen(AppState.selectedTopicId || 1);
+      });
+      cardStartWriting.addEventListener("keydown", (e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          this.applyMode("writing");
+          this.openWritingScreen(AppState.selectedTopicId || 1);
+        }
+      });
+    }
 
     // Theme toggles
     document.querySelectorAll(".theme-toggle-btn").forEach((btn) => {
